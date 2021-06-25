@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct MainView: View {
+    private let db = Database()
+    
     var body: some View {
         NavigationView {
             SidebarView()
             ActivityListView()
             ActivityDetailView(activity: .dummy1)
         }
+        .environmentObject(Database())
     }
 }
 
