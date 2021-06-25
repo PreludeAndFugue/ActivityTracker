@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct SidebarView: View {
+    @EnvironmentObject var db: Database
     @StateObject var vm = SidebarViewModel()
+
 
     var body: some View {
         VStack {
             List(selection: $vm.selectionActivity) {
                 Section(header: Text("Activities")) {
-                    Text("All activities").tag(1)
-                    Text("Bike").tag(2)
-                    Text("Run").tag(3)
+                    Text("All activities")
+                        .tag(SidebarViewModel.SelectionActivity.all)
+                    Text("Bike")
+                        .tag(SidebarViewModel.SelectionActivity.bike)
+                    Text("Run")
+                        .tag(SidebarViewModel.SelectionActivity.run)
                 }
             }
 
@@ -29,6 +34,10 @@ struct SidebarView: View {
 
             Spacer()
         }
+        .onChange(of: vm.selectionActivity, perform: { selection in
+            let activityType = vm.activityType(selection: selection)
+            db.filter(for: activityType)
+        })
         .listStyle(SidebarListStyle())
         .frame(width: 200)
     }

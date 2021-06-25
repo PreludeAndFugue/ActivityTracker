@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ActivityListView: View {
-    let activities = Activity.dummyActivities
+    @EnvironmentObject var db: Database
 
 
     var body: some View {
-        List(activities) { activity in
+        List(db.currentActivities) { activity in
             ActivityListItemView(activity: activity)
         }
         .toolbar {
