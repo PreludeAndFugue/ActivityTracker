@@ -12,7 +12,7 @@ struct MainView: View {
         NavigationView {
             SidebarView()
             ActivityListView()
-            ActivityDetailView()
+            ActivityDetailView(activity: .dummy1)
         }
     }
 }
