@@ -25,12 +25,21 @@ struct ActivityDetailView: View {
 private extension ActivityDetailView {
     var overlay: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(model.activity.title)
-            Text(model.activity.dateString)
-            Text("Type: \(model.activity.type.title)")
-            Text("Gear: \(model.activity.gear)")
-            Text("Distance: \(model.activity.distanceInKilometres)")
-            Text("Duration: \(model.activity.elapsedTimeString)")
+            Button(action: model.toggleDetails) {
+                HStack {
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(model.chevronAngle)
+                    Text(model.disclosureText)
+                }
+            }
+            if model.isShowingDetails {
+                Text(model.activity.title)
+                Text(model.activity.dateString)
+                Text("Type: \(model.activity.type.title)")
+                Text("Gear: \(model.activity.gear)")
+                Text("Distance: \(model.activity.distanceInKilometres)")
+                Text("Duration: \(model.activity.elapsedTimeString)")
+            }
         }
         .padding()
         .background(Color.init(.sRGB, white: 0, opacity: 0.4))
