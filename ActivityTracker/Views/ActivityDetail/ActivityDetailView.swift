@@ -28,8 +28,8 @@ private extension ActivityDetailView {
             Text(activity.dateString)
             Text("Type: \(activity.type.title)")
             Text("Gear: \(activity.gear)")
-            Text("Distance: \(activity.distance)")
-            Text("Duration: \(activity.elapsedTime)")
+            Text("Distance: \(activity.distanceInKilometres)")
+            Text("Duration: \(activity.elapsedTimeString)")
         }
         .padding()
         .background(Color.init(.sRGB, white: 0, opacity: 0.4))

@@ -16,6 +16,26 @@ private var dateFormatter: DateFormatter = {
     return df
 }()
 
+private var elapsedTimeFormatter: DateComponentsFormatter = {
+    var df = DateComponentsFormatter()
+    df.allowedUnits = [.hour, .minute, .second]
+    df.maximumUnitCount = 2
+    df.unitsStyle = .abbreviated
+    return df
+}()
+
+private var distanceFormatter: MeasurementFormatter = {
+    var nf = NumberFormatter()
+    nf.numberStyle = .decimal
+    nf.maximumFractionDigits = 2
+    var mf = MeasurementFormatter()
+    mf.unitOptions = .providedUnit
+    mf.unitStyle = .short
+    mf.numberFormatter = nf
+    return mf
+}()
+
+
 struct Activity: Identifiable, Codable {
     let id: String
     let type: ActivityType
@@ -26,8 +46,20 @@ struct Activity: Identifiable, Codable {
     let distance: Double
     let fileName: String
 
+
     var dateString: String {
         dateFormatter.string(from: date)
+    }
+
+
+    var elapsedTimeString: String {
+        return elapsedTimeFormatter.string(from: elapsedTime) ?? "00:00"
+    }
+
+
+    var distanceInKilometres: String {
+        let m = Measurement(value: distance, unit: UnitLength.meters)
+        return distanceFormatter.string(from: m.converted(to: .kilometers))
     }
 }
 
@@ -47,15 +79,9 @@ extension Activity {
 }
 
 
-// MARK: - FetchableRecord
+// MARK: - GRDB
 
-extension Activity: FetchableRecord {
-}
-
-
-// MARK: - TableRecord
-
-extension Activity: TableRecord {
+extension Activity: FetchableRecord, TableRecord, PersistableRecord {
     enum Columns: String, ColumnExpression {
         case id
         case type
@@ -66,10 +92,4 @@ extension Activity: TableRecord {
         case distance
         case fileName
     }
-}
-
-
-// MARK: - Persistable
-
-extension Activity: PersistableRecord {
 }
