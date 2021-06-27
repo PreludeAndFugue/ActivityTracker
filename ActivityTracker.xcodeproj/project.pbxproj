@@ -21,6 +21,7 @@
 		4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2482682AC4400C1180D /* ActivityListView.swift */; };
 		4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */; };
 		4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9CE5B62688D527002F6446 /* CoreGPX */; };
+		4E9CE5BA2688D546002F6446 /* FitFileParser in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9CE5B92688D546002F6446 /* FitFileParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */,
+				4E9CE5BA2688D546002F6446 /* FitFileParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +168,7 @@
 			name = ActivityTracker;
 			packageProductDependencies = (
 				4E9CE5B62688D527002F6446 /* CoreGPX */,
+				4E9CE5B92688D546002F6446 /* FitFileParser */,
 			);
 			productName = ActivityTracker;
 			productReference = 4E6ED2322682A43400C1180D /* ActivityTracker.app */;
@@ -196,6 +199,7 @@
 			mainGroup = 4E6ED2292682A43400C1180D;
 			packageReferences = (
 				4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */,
+				4E9CE5B82688D546002F6446 /* XCRemoteSwiftPackageReference "FitFileParser" */,
 			);
 			productRefGroup = 4E6ED2332682A43400C1180D /* Products */;
 			projectDirPath = "";
@@ -435,6 +439,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		4E9CE5B82688D546002F6446 /* XCRemoteSwiftPackageReference "FitFileParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roznet/FitFileParser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -442,6 +454,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */;
 			productName = CoreGPX;
+		};
+		4E9CE5B92688D546002F6446 /* FitFileParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E9CE5B82688D546002F6446 /* XCRemoteSwiftPackageReference "FitFileParser" */;
+			productName = FitFileParser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

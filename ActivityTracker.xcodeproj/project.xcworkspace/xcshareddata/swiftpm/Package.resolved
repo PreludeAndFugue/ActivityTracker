@@ -9,6 +9,15 @@
           "revision": "bc61acc0b64f8f09a51811ac0664885af30d0a41",
           "version": "0.9.0"
         }
+      },
+      {
+        "package": "FitFileParser",
+        "repositoryURL": "https://github.com/roznet/FitFileParser",
+        "state": {
+          "branch": null,
+          "revision": "f880f4f5a9ed1dbf347964847c0e9c6eb3f60518",
+          "version": "1.4.3"
+        }
       }
     ]
   },
