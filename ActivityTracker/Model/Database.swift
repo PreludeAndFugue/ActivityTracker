@@ -32,7 +32,6 @@ final class Database: ObservableObject {
             try activity.insert(db)
         }
         currentActivities = get(for: nil)
-        print(currentActivities)
     }
 }
 

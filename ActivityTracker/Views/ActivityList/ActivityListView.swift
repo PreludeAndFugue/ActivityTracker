@@ -48,8 +48,9 @@ private extension ActivityListView {
 
 #if DEBUG
 struct ActivityListView_Previews: PreviewProvider {
+    private static let model = ActivityListViewModel(db: Database())
     static var previews: some View {
-        ActivityListView(model: ActivityListViewModel(db: Database()))
+        ActivityListView(model: model)
     }
 }
 #endif

@@ -9,14 +9,16 @@ import SwiftUI
 
 struct MainView: View {
     private let db = Database()
+    private let gpxReader = GpxReader.shared
     
     var body: some View {
         NavigationView {
             SidebarView()
             ActivityListView(model: ActivityListViewModel(db: db))
-            ActivityDetailView(activity: .dummy1)
+            ActivityDetailView(model: .init(activity: .dummy1))
         }
-        .environmentObject(Database())
+        .environmentObject(gpxReader)
+        .environmentObject(db)
     }
 }
 

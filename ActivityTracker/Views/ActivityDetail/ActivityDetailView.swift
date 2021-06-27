@@ -9,11 +9,12 @@ import MapKit
 import SwiftUI
 
 struct ActivityDetailView: View {
-    let activity: Activity
+    @EnvironmentObject var gpxReader: GpxReader
+    @StateObject var model: ActivityDetailViewModel
 
 
     var body: some View {
-        ActivityDetailMap(activity: activity)
+        ActivityDetailMap(activity: model.activity, gpxReader: gpxReader)
             .overlay(overlay, alignment: .topLeading)
     }
 }
@@ -24,12 +25,12 @@ struct ActivityDetailView: View {
 private extension ActivityDetailView {
     var overlay: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(activity.title)
-            Text(activity.dateString)
-            Text("Type: \(activity.type.title)")
-            Text("Gear: \(activity.gear)")
-            Text("Distance: \(activity.distanceInKilometres)")
-            Text("Duration: \(activity.elapsedTimeString)")
+            Text(model.activity.title)
+            Text(model.activity.dateString)
+            Text("Type: \(model.activity.type.title)")
+            Text("Gear: \(model.activity.gear)")
+            Text("Distance: \(model.activity.distanceInKilometres)")
+            Text("Duration: \(model.activity.elapsedTimeString)")
         }
         .padding()
         .background(Color.init(.sRGB, white: 0, opacity: 0.4))
@@ -42,8 +43,9 @@ private extension ActivityDetailView {
 #if DEBUG
 struct ActivityDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityDetailView(activity: .dummy1)
+        ActivityDetailView(model: .init(activity: .dummy1))
             .frame(width: 600, height: 600)
+            .environmentObject(GpxReader.shared)
     }
 }
 #endif

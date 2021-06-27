@@ -10,6 +10,7 @@ import Foundation
 
 final class ActivityListViewModel: ObservableObject {
     let db: Database
+
     @Published var isImporting = false
 
 

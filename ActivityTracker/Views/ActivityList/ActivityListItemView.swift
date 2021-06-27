@@ -12,7 +12,7 @@ struct ActivityListItemView: View {
 
     var body: some View {
         NavigationLink(
-            destination: ActivityDetailView(activity: activity),
+            destination: ActivityDetailView(model: .init(activity: activity)),
             label: {
                 VStack(alignment: .leading) {
                     HStack {
@@ -35,6 +35,7 @@ struct ActivityListItemView_Previews: PreviewProvider {
         Group {
             ActivityListItemView(activity: .dummy1)
                 .frame(width: 350, height: 150)
+                .environmentObject(GpxReader.shared)
         }
     }
 }
