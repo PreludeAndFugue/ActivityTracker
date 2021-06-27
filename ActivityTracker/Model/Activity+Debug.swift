@@ -6,6 +6,9 @@
 //
 
 #if DEBUG
+
+import Foundation
+
 extension Activity {
     static let dummy1 = dummy(n: 1)
 
@@ -16,8 +19,12 @@ extension Activity {
         Activity(
             id: "\(n)",
             type: .allCases.randomElement()!,
+            gear: "Chromium",
             title: "Activity \(n)",
-            date: "06-06-2021"
+            date: Date(),
+            elapsedTime: 1000,
+            distance: 10_000,
+            fileName: "filename.gpx"
         )
     }
 }

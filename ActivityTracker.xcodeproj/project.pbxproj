@@ -22,6 +22,8 @@
 		4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */; };
 		4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9CE5B62688D527002F6446 /* CoreGPX */; };
 		4E9CE5BA2688D546002F6446 /* FitFileParser in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9CE5B92688D546002F6446 /* FitFileParser */; };
+		4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1D6042688E38E004F7B83 /* GpxReader.swift */; };
+		4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1D6062688EEC2004F7B83 /* Distance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		4E6ED2462682AC0600C1180D /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		4E6ED2482682AC4400C1180D /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
+		4EA1D6042688E38E004F7B83 /* GpxReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpxReader.swift; sourceTree = "<group>"; };
+		4EA1D6062688EEC2004F7B83 /* Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				4E59DEF62686736300A712F0 /* Activity.swift */,
 				4E59DEF8268673D100A712F0 /* Activity+Debug.swift */,
 				4E59DEFF268681E000A712F0 /* Database.swift */,
+				4EA1D6042688E38E004F7B83 /* GpxReader.swift */,
+				4EA1D6062688EEC2004F7B83 /* Distance.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,10 +237,12 @@
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,
+				4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */,
 				4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */,
 				4E59DEFE2686802F00A712F0 /* ActivityDetailMap.swift in Sources */,
 				4E6ED2362682A43400C1180D /* ActivityTrackerApp.swift in Sources */,
 				4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */,
+				4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */,
 				4E59DEFB2686766D00A712F0 /* SidebarViewModel.swift in Sources */,
 				4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */,
 				4E6ED2472682AC0600C1180D /* SidebarView.swift in Sources */,

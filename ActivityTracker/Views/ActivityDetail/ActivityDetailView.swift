@@ -25,7 +25,7 @@ private extension ActivityDetailView {
     var overlay: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(activity.title)
-            Text(activity.date)
+            Text(activity.dateString)
             Text("Type: \(activity.type.title)")
             Text("Distance: 100 km")
         }

@@ -20,7 +20,7 @@ struct ActivityListItemView: View {
 
                         Spacer()
 
-                        Text(activity.date)
+                        Text(activity.dateString)
                     }
                     Text("Type: \(activity.type.title)")
                 }

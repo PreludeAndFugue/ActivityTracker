@@ -5,11 +5,28 @@
 //  Created by gary on 25/06/2021.
 //
 
+import Foundation
+
+private var dateFormatter: DateFormatter = {
+    var df = DateFormatter()
+    df.dateStyle = .medium
+    df.timeStyle = .short
+    return df
+}()
+
 struct Activity: Identifiable {
     let id: String
     let type: ActivityType
+    let gear: String
     let title: String
-    let date: String
+    let date: Date
+    let elapsedTime: TimeInterval
+    let distance: Double
+    let fileName: String
+
+    var dateString: String {
+        dateFormatter.string(from: date)
+    }
 }
 
 
