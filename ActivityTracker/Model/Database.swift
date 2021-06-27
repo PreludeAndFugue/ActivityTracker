@@ -10,6 +10,7 @@ import Combine
 final class Database: ObservableObject {
     @Published var currentActivities: [Activity] = []
 
+
     init() {
         currentActivities = get(for: nil)
     }
@@ -25,9 +26,10 @@ final class Database: ObservableObject {
 
 private extension Database {
     func get(for type: Activity.ActivityType?) -> [Activity] {
-        guard let type = type else {
-            return Activity.dummyActivities
-        }
-        return Activity.dummyActivities.filter({ $0.type == type })
+//        guard let type = type else {
+//            return Activity.dummyActivities
+//        }
+//        return Activity.dummyActivities.filter({ $0.type == type })
+        return []
     }
 }

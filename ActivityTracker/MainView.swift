@@ -13,7 +13,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             SidebarView()
-            ActivityListView()
+            ActivityListView(model: ActivityListViewModel(db: db))
             ActivityDetailView(activity: .dummy1)
         }
         .environmentObject(Database())

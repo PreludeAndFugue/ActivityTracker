@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0ACF64268908E1002AE129 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ACF63268908E1002AE129 /* ActivityListViewModel.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
 		4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF8268673D100A712F0 /* Activity+Debug.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0ACF63268908E1002AE129 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4E59DEF8268673D100A712F0 /* Activity+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Debug.swift"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				4E6ED2482682AC4400C1180D /* ActivityListView.swift */,
 				4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */,
+				4E0ACF63268908E1002AE129 /* ActivityListViewModel.swift */,
 			);
 			path = ActivityList;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6ED2382682A43400C1180D /* MainView.swift in Sources */,
+				4E0ACF64268908E1002AE129 /* ActivityListViewModel.swift in Sources */,
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,

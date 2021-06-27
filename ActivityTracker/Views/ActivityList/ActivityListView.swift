@@ -13,8 +13,7 @@ import CoreGPX
 
 struct ActivityListView: View {
     @EnvironmentObject var db: Database
-
-    @State var isImporting = false
+    @StateObject var model: ActivityListViewModel
 
 
     var body: some View {
@@ -22,25 +21,14 @@ struct ActivityListView: View {
             ActivityListItemView(activity: activity)
         }
         .toolbar {
-            Button(action: {}) {
-                Image(systemName: "square.and.arrow.up")
-            }
-            Button(action: importFile) {
+            Button(action: model.startImport) {
                 Image(systemName: "square.and.arrow.down")
             }
         }
         .fileImporter(
-            isPresented: $isImporting,
+            isPresented: $model.isImporting,
             allowedContentTypes: allowedContentTypes,
-            onCompletion: { result in
-                print(result)
-                switch result {
-                case .success(let url):
-                    open(url: url)
-                case .failure(let error):
-                    print("error importing file", error)
-                }
-            }
+            onCompletion: model.completion(result:)
         )
         .frame(minWidth: 250)
     }
@@ -50,43 +38,11 @@ struct ActivityListView: View {
 // MARK: - Private
 
 private extension ActivityListView {
-    func importFile() {
-        isImporting.toggle()
-    }
-
-
     var allowedContentTypes: [UTType] {
         [
             UTType(filenameExtension: "fit") ?? .xml,
             UTType(filenameExtension: "gpx") ?? .xml
         ]
-    }
-
-
-    func open(url: URL) {
-        switch url.pathExtension {
-        case "gpx":
-            openGpx(url: url)
-        case "fit":
-            openFit(url: url)
-        default:
-            print("unknown extension", url.pathExtension)
-        }
-    }
-
-
-    func openGpx(url: URL) {
-        do {
-            let activity = try GpxReader.shared.createActivity(with: url)
-            print(activity)
-        } catch let error {
-            print(error)
-        }
-    }
-
-
-    func openFit(url: URL) {
-
     }
 }
 
@@ -94,7 +50,7 @@ private extension ActivityListView {
 #if DEBUG
 struct ActivityListView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityListView()
+        ActivityListView(model: ActivityListViewModel(db: Database()))
     }
 }
 #endif
