@@ -9,8 +9,7 @@ import Combine
 import Foundation
 
 final class ActivityListViewModel: ObservableObject {
-    private let db: Database
-
+    let db: Database
     @Published var isImporting = false
 
 
@@ -54,6 +53,7 @@ private extension ActivityListViewModel {
         do {
             let activity = try GpxReader.shared.createActivity(with: url)
             print(activity)
+            db.create(activity)
         } catch let error {
             print(error)
         }

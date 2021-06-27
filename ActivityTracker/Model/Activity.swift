@@ -7,6 +7,8 @@
 
 import Foundation
 
+import GRDB
+
 private var dateFormatter: DateFormatter = {
     var df = DateFormatter()
     df.dateStyle = .medium
@@ -14,7 +16,7 @@ private var dateFormatter: DateFormatter = {
     return df
 }()
 
-struct Activity: Identifiable {
+struct Activity: Identifiable, Codable {
     let id: String
     let type: ActivityType
     let gear: String
@@ -31,7 +33,7 @@ struct Activity: Identifiable {
 
 
 extension Activity {
-    enum ActivityType: CaseIterable {
+    enum ActivityType: String, CaseIterable, Codable {
         case bike
         case run
 
@@ -42,4 +44,32 @@ extension Activity {
             }
         }
     }
+}
+
+
+// MARK: - FetchableRecord
+
+extension Activity: FetchableRecord {
+}
+
+
+// MARK: - TableRecord
+
+extension Activity: TableRecord {
+    enum Columns: String, ColumnExpression {
+        case id
+        case type
+        case gear
+        case title
+        case date
+        case elapsedTime
+        case distance
+        case fileName
+    }
+}
+
+
+// MARK: - Persistable
+
+extension Activity: PersistableRecord {
 }

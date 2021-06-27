@@ -12,12 +12,11 @@ import CoreGPX
 
 
 struct ActivityListView: View {
-    @EnvironmentObject var db: Database
     @StateObject var model: ActivityListViewModel
 
 
     var body: some View {
-        List(db.currentActivities) { activity in
+        List(model.db.currentActivities) { activity in
             ActivityListItemView(activity: activity)
         }
         .toolbar {
