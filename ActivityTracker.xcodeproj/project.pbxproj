@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		4E6ED2472682AC0600C1180D /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2462682AC0600C1180D /* SidebarView.swift */; };
 		4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2482682AC4400C1180D /* ActivityListView.swift */; };
 		4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */; };
+		4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = 4E9CE5B62688D527002F6446 /* CoreGPX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +164,9 @@
 			dependencies = (
 			);
 			name = ActivityTracker;
+			packageProductDependencies = (
+				4E9CE5B62688D527002F6446 /* CoreGPX */,
+			);
 			productName = ActivityTracker;
 			productReference = 4E6ED2322682A43400C1180D /* ActivityTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -189,6 +194,9 @@
 				Base,
 			);
 			mainGroup = 4E6ED2292682A43400C1180D;
+			packageReferences = (
+				4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */,
+			);
 			productRefGroup = 4E6ED2332682A43400C1180D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -417,6 +425,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vincentneo/CoreGPX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E9CE5B62688D527002F6446 /* CoreGPX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */;
+			productName = CoreGPX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E6ED22A2682A43400C1180D /* Project object */;
 }
