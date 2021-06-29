@@ -24,7 +24,8 @@ struct ActivityListItemView: View {
                     }
                     Text("Type: \(activity.type.title)")
                 }
-            })
+            }
+        )
     }
 }
 

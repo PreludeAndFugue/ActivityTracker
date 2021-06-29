@@ -12,6 +12,13 @@ final class ActivityListViewModel: ObservableObject {
     let db: Database
 
     @Published var isImporting = false
+    @Published var isError = false
+
+    var errorMessage: String {
+        error?.localizedDescription ?? "Unknown error"
+    }
+
+    private var error: Error?
 
 
     init(db: Database) {
@@ -56,7 +63,8 @@ private extension ActivityListViewModel {
             print(activity)
             db.create(activity)
         } catch let error {
-            print(error)
+            self.error = error
+            isError = true
         }
     }
 

@@ -29,6 +29,7 @@ struct ActivityListView: View {
             allowedContentTypes: allowedContentTypes,
             onCompletion: model.completion(result:)
         )
+        .alert(isPresented: $model.isError, content: alert)
         .frame(minWidth: 250)
     }
 }
@@ -37,6 +38,15 @@ struct ActivityListView: View {
 // MARK: - Private
 
 private extension ActivityListView {
+    func alert() -> Alert {
+        Alert(
+            title: Text("Error"),
+            message: Text(model.errorMessage),
+            dismissButton: .default(Text("OK"))
+        )
+    }
+
+
     var allowedContentTypes: [UTType] {
         [
             UTType(filenameExtension: "fit") ?? .xml,

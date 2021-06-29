@@ -12,6 +12,7 @@ import CoreGPX
 
 class GpxReader: ObservableObject {
     enum Error: Swift.Error {
+        case noAccessToDocumentFolder
         case couldNotSaveFile
         case couldNotReadData
         case moreThanOneTrack
@@ -22,9 +23,7 @@ class GpxReader: ObservableObject {
 
 
     func createActivity(with url: URL) throws -> Activity {
-        guard let destination = saveFileToSandbox(url: url) else {
-            throw Error.couldNotSaveFile
-        }
+        let destination = try saveFileToSandbox(url: url)
         guard let gpx = GPXParser(withURL: url)?.parsedData() else {
             throw Error.couldNotReadData
         }
@@ -81,13 +80,15 @@ private extension GpxReader {
     }
 
 
-    func saveFileToSandbox(url: URL) -> URL? {
+    func saveFileToSandbox(url: URL) throws -> URL {
         let fm = FileManager.default
         guard var destination = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
+            throw Error.noAccessToDocumentFolder
         }
         destination.appendPathComponent(url.lastPathComponent)
-        try! FileManager.default.copyItem(at: url, to: destination)
+        do {
+            try FileManager.default.copyItem(at: url, to: destination)
+        }
         return destination
     }
 }
