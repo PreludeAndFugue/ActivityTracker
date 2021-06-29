@@ -60,7 +60,6 @@ private extension ActivityListViewModel {
     func openGpx(url: URL) {
         do {
             let activity = try GpxReader.shared.createActivity(with: url)
-            print(activity)
             db.create(activity)
         } catch let error {
             self.error = error

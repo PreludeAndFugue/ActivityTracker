@@ -6,17 +6,28 @@
 //
 
 import Combine
+import Foundation
 
 import GRDB
 
 final class Database: ObservableObject {
+    enum Error: Swift.Error {
+        case noAccessToDocumentFolder
+    }
+
+    private static let fileName = "ActivityTracker.sqlite"
+
     private let queue: DatabaseQueue
 
     @Published var currentActivities: [Activity] = []
 
 
-    init() {
-        queue = DatabaseQueue()
+    init(inMemory: Bool = false) throws {
+        if inMemory {
+            queue = DatabaseQueue()
+        } else {
+            queue = try DatabaseQueue(path: Self.path())
+        }
         createActivityTable()
         currentActivities = get(for: nil)
     }
@@ -39,6 +50,15 @@ final class Database: ObservableObject {
 // MARK: - Private
 
 private extension Database {
+    static func path() throws -> String {
+        guard var destination = FileManager.default.documentDirectory else {
+            throw Error.noAccessToDocumentFolder
+        }
+        destination.appendPathComponent(fileName)
+        return destination.absoluteString
+    }
+
+
     func get(for type: Activity.ActivityType?) -> [Activity] {
 //        guard let type = type else {
 //            return Activity.dummyActivities
@@ -52,7 +72,7 @@ private extension Database {
 
     func createActivityTable() {
         try! queue.write() { db in
-            try db.create(table: "activity") { t in
+            try db.create(table: "activity", ifNotExists: true) { t in
                 t.column(Activity.Columns.id.rawValue, .text)
                 t.column(Activity.Columns.type.rawValue, .text)
                 t.column(Activity.Columns.gear.rawValue, .text)
@@ -65,3 +85,14 @@ private extension Database {
         }
     }
 }
+
+
+#if DEBUG
+extension Database {
+    convenience init(dummy: Bool = true) {
+        try! self.init(inMemory: true)
+    }
+
+    static let dummy = Database(dummy: true)
+}
+#endif

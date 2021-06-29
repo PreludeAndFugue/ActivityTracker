@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    private let db = Database()
+    private let db = try! Database()
     private let gpxReader = GpxReader.shared
     
     var body: some View {

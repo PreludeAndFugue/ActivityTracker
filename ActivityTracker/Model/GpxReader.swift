@@ -82,7 +82,7 @@ private extension GpxReader {
 
     func saveFileToSandbox(url: URL) throws -> URL {
         let fm = FileManager.default
-        guard var destination = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        guard var destination = fm.documentDirectory else {
             throw Error.noAccessToDocumentFolder
         }
         destination.appendPathComponent(url.lastPathComponent)
