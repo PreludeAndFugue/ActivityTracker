@@ -60,12 +60,10 @@ private extension Database {
 
 
     func get(for type: Activity.ActivityType?) -> [Activity] {
-//        guard let type = type else {
-//            return Activity.dummyActivities
-//        }
-//        return Activity.dummyActivities.filter({ $0.type == type })
         return try! queue.read() { db in
-            try Activity.fetchAll(db)
+            try Activity.all()
+                .order(Activity.Columns.date.desc)
+                .fetchAll(db)
         }
     }
 
