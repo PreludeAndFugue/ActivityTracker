@@ -17,7 +17,10 @@ struct ActivityListView: View {
 
     var body: some View {
         List(model.db.currentActivities) { activity in
-            ActivityListItemView(activity: activity)
+            ActivityListItemView(activity: activity, selection: $model.selectedActivity)
+        }
+        .onAppear {
+            model.setSelection()
         }
         .toolbar {
             Button(action: model.startImport) {
@@ -30,7 +33,7 @@ struct ActivityListView: View {
             onCompletion: model.completion(result:)
         )
         .alert(isPresented: $model.isError, content: alert)
-        .frame(minWidth: 250)
+        .frame(idealWidth: 300)
     }
 }
 

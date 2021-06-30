@@ -11,6 +11,7 @@ import Foundation
 final class ActivityListViewModel: ObservableObject {
     let db: Database
 
+    @Published var selectedActivity: Activity? = nil
     @Published var isImporting = false
     @Published var isError = false
 
@@ -38,6 +39,11 @@ final class ActivityListViewModel: ObservableObject {
         case .failure(let error):
             print(error)
         }
+    }
+
+
+    func setSelection() {
+        selectedActivity = db.currentActivities.first
     }
 }
 

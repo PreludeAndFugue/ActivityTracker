@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ActivityListItemView: View {
     let activity: Activity
+    let selection: Binding<Activity?>
 
     var body: some View {
         NavigationLink(
             destination: ActivityDetailView(model: .init(activity: activity)),
+            tag: activity,
+            selection: selection,
             label: {
                 VStack(alignment: .leading) {
                     HStack {
@@ -34,7 +37,7 @@ struct ActivityListItemView: View {
 struct ActivityListItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityListItemView(activity: .dummy1)
+            ActivityListItemView(activity: .dummy1, selection: .constant(nil))
                 .frame(width: 350, height: 150)
                 .environmentObject(GpxReader.shared)
         }

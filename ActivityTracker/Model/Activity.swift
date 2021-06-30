@@ -53,6 +53,13 @@ extension Activity {
 }
 
 
+extension Activity: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+
 // MARK: - GRDB
 
 extension Activity: FetchableRecord, TableRecord, PersistableRecord {
