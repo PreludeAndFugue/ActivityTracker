@@ -39,7 +39,7 @@ struct SidebarView: View {
             db.filter(for: activityType)
         })
         .listStyle(SidebarListStyle())
-        .frame(width: 200)
+        .frame(idealWidth: 200)
     }
 }
 
