@@ -17,6 +17,7 @@ final class ActivityDetailMap: NSObject, NSViewRepresentable {
             }
             let r = MKPolylineRenderer(overlay: overlay)
             r.strokeColor = .red
+            r.lineWidth = 3
             return r
         }
     }
