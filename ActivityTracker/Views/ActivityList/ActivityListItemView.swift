@@ -9,26 +9,18 @@ import SwiftUI
 
 struct ActivityListItemView: View {
     let activity: Activity
-    let selection: Binding<Activity?>
 
     var body: some View {
-        NavigationLink(
-            destination: ActivityDetailView(model: .init(activity: activity)),
-            tag: activity,
-            selection: selection,
-            label: {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(activity.title)
+        VStack(alignment: .leading) {
+            HStack {
+                Text(activity.title)
 
-                        Spacer()
+                Spacer()
 
-                        Text(activity.dateString)
-                    }
-                    Text("Type: \(activity.type.title)")
-                }
+                Text(activity.dateString)
             }
-        )
+            Text("Type: \(activity.type.title)")
+        }
     }
 }
 
@@ -37,9 +29,8 @@ struct ActivityListItemView: View {
 struct ActivityListItemView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityListItemView(activity: .dummy1, selection: .constant(nil))
+            ActivityListItemView(activity: .dummy1)
                 .frame(width: 350, height: 150)
-                .environmentObject(GpxReader.shared)
         }
     }
 }

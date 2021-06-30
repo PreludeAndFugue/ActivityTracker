@@ -10,12 +10,23 @@ import SwiftUI
 struct MainView: View {
     private let db = try! Database()
     private let gpxReader = GpxReader.shared
+
+    @StateObject var model: MainViewModel
     
     var body: some View {
         NavigationView {
             SidebarView()
-            ActivityListView(model: ActivityListViewModel(db: db))
-            ActivityDetailView(model: .init(activity: .dummy1))
+            ActivityListView(
+                model: ActivityListViewModel(db: db),
+                activity: $model.selectedActivity
+            )
+            ActivityDetailView(
+                model: ActivityDetailViewModel(),
+                activity: $model.selectedActivity
+            )
+        }
+        .onAppear() {
+            model.selectedActivity = db.currentActivities.first
         }
         .environmentObject(gpxReader)
         .environmentObject(db)
@@ -26,7 +37,7 @@ struct MainView: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(model: MainViewModel())
     }
 }
 #endif

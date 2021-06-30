@@ -13,14 +13,15 @@ import CoreGPX
 
 struct ActivityListView: View {
     @StateObject var model: ActivityListViewModel
+    @Binding var activity: Activity?
 
 
     var body: some View {
-        List(model.db.currentActivities) { activity in
-            ActivityListItemView(activity: activity, selection: $model.selectedActivity)
-        }
-        .onAppear {
-            model.setSelection()
+        List(selection: $activity) {
+            ForEach(model.db.currentActivities) { activity in
+                ActivityListItemView(activity: activity)
+                    .tag(activity)
+            }
         }
         .toolbar {
             Button(action: model.startImport) {
@@ -63,7 +64,7 @@ private extension ActivityListView {
 struct ActivityListView_Previews: PreviewProvider {
     private static let model = ActivityListViewModel(db: .dummy)
     static var previews: some View {
-        ActivityListView(model: model)
+        ActivityListView(model: model, activity: .constant(nil))
     }
 }
 #endif

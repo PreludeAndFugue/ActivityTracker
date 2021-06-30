@@ -11,7 +11,7 @@ import SwiftUI
 struct ActivityTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(model: MainViewModel())
         }
     }
 }

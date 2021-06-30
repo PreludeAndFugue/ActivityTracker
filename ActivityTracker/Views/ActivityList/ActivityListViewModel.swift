@@ -24,6 +24,7 @@ final class ActivityListViewModel: ObservableObject {
 
     init(db: Database) {
         self.db = db
+        selectedActivity = db.currentActivities.first
     }
 
 
@@ -37,13 +38,9 @@ final class ActivityListViewModel: ObservableObject {
         case .success(let url):
             open(url: url)
         case .failure(let error):
-            print(error)
+            self.error = error
+            isError = true
         }
-    }
-
-
-    func setSelection() {
-        selectedActivity = db.currentActivities.first
     }
 }
 

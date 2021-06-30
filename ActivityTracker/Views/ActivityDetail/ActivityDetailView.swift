@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ActivityDetailView: View {
     @EnvironmentObject var gpxReader: GpxReader
-    @StateObject var model: ActivityDetailViewModel
 
+    @StateObject var model: ActivityDetailViewModel
+    @Binding var activity: Activity?
 
     var body: some View {
-        ActivityDetailMap(activity: model.activity, gpxReader: gpxReader)
+        ActivityDetailMap(activity: activity, gpxReader: gpxReader)
             .overlay(overlay, alignment: .topLeading)
     }
 }
@@ -32,13 +33,13 @@ private extension ActivityDetailView {
                     Text(model.disclosureText)
                 }
             }
-            if model.isShowingDetails {
-                Text(model.activity.title)
-                Text(model.activity.dateString)
-                Text("Type: \(model.activity.type.title)")
-                Text("Gear: \(model.activity.gear)")
-                Text("Distance: \(model.activity.distanceInKilometres)")
-                Text("Duration: \(model.activity.elapsedTimeString)")
+            if activity != nil && model.isShowingDetails {
+                Text(activity?.title ?? "")
+                Text(activity?.dateString ?? "")
+                Text("Type: \(activity!.type.title)")
+                Text("Gear: \(activity!.gear)")
+                Text("Distance: \(activity!.distanceInKilometres)")
+                Text("Duration: \(activity!.elapsedTimeString)")
             }
         }
         .padding()
@@ -52,7 +53,7 @@ private extension ActivityDetailView {
 #if DEBUG
 struct ActivityDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityDetailView(model: .init(activity: .dummy1))
+        ActivityDetailView(model: .init(), activity: .constant(.dummy1))
             .frame(width: 600, height: 600)
             .environmentObject(GpxReader.shared)
     }
