@@ -17,26 +17,27 @@ struct SidebarView: View {
             List(selection: $vm.selectionActivity) {
                 Section(header: Text("Activities")) {
                     Text("All activities")
-                        .tag(SidebarViewModel.SelectionActivity.all)
+                        .tag(SidebarViewModel.Selection.allActivities)
                     Text("Bike")
-                        .tag(SidebarViewModel.SelectionActivity.bike)
+                        .tag(SidebarViewModel.Selection.bike)
                     Text("Run")
-                        .tag(SidebarViewModel.SelectionActivity.run)
+                        .tag(SidebarViewModel.Selection.run)
+                    Text("This week")
+                        .tag(SidebarViewModel.Selection.activitiesWeek)
+                    Text("This month")
+                        .tag(SidebarViewModel.Selection.activitiesMonth)
                 }
-            }
 
-            List(selection: $vm.selectionDuration) {
-                Section(header: Text("Dates")) {
-                    Text("This week").tag(4)
-                    Text("This month").tag(5)
+                Section(header: Text("Statistics")) {
+                    Text("This week").tag(SidebarViewModel.Selection.statsWeek)
+                    Text("This month").tag(SidebarViewModel.Selection.statsMonth)
                 }
             }
 
             Spacer()
         }
         .onChange(of: vm.selectionActivity, perform: { selection in
-            let activityType = vm.activityType(selection: selection)
-            db.filter(for: activityType)
+            print("update sidebar selection")
         })
         .listStyle(SidebarListStyle())
         .frame(idealWidth: 200)
