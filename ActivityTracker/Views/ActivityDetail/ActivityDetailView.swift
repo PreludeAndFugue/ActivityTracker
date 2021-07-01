@@ -9,13 +9,13 @@ import MapKit
 import SwiftUI
 
 struct ActivityDetailView: View {
-    @EnvironmentObject var gpxReader: GpxReader
+    @EnvironmentObject var appCoordinator: AppCoordinator
 
     @StateObject var model: ActivityDetailViewModel
     @Binding var activity: Activity?
 
     var body: some View {
-        ActivityDetailMap(activity: activity, gpxReader: gpxReader)
+        ActivityDetailMap(activity: activity)
             .overlay(overlay, alignment: .topLeading)
     }
 }
@@ -55,7 +55,7 @@ struct ActivityDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ActivityDetailView(model: .init(), activity: .constant(.dummy1))
             .frame(width: 600, height: 600)
-            .environmentObject(GpxReader.shared)
+            .environmentObject(AppCoordinator(db: .dummy))
     }
 }
 #endif

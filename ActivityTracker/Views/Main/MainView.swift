@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    private let db = try! Database()
-    private let gpxReader = GpxReader.shared
+    @EnvironmentObject var appCoordinator: AppCoordinator
 
     @StateObject var model: MainViewModel
     
@@ -17,7 +16,7 @@ struct MainView: View {
         NavigationView {
             SidebarView()
             ActivityListView(
-                model: ActivityListViewModel(db: db),
+                model: ActivityListViewModel(appCoordinator: appCoordinator),
                 activity: $model.selectedActivity
             )
             ActivityDetailView(
@@ -26,10 +25,20 @@ struct MainView: View {
             )
         }
         .onAppear() {
-            model.selectedActivity = db.currentActivities.first
+            model.selectedActivity = appCoordinator.firstActivity
         }
-        .environmentObject(gpxReader)
-        .environmentObject(db)
+        .fileImporter(
+            isPresented: $appCoordinator.isImporting,
+            allowedContentTypes: appCoordinator.allowedContentTypes,
+            onCompletion: appCoordinator.importCompletion(result:)
+        )
+        .alert(isPresented: $appCoordinator.isError) {
+            Alert(
+                title: Text("Error"),
+                message: Text(appCoordinator.errorMessage),
+                dismissButton: .cancel()
+            )
+        }
     }
 }
 

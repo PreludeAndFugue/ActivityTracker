@@ -10,6 +10,7 @@
 		4E0ACF64268908E1002AE129 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ACF63268908E1002AE129 /* ActivityListViewModel.swift */; };
 		4E0ACF6726890E09002AE129 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0ACF6626890E09002AE129 /* GRDB */; };
 		4E0ACF6926892397002AE129 /* ActivityDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ACF6826892397002AE129 /* ActivityDetailViewModel.swift */; };
+		4E2D1AC9268E70D4003ADEB3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D1AC8268E70D4003ADEB3 /* AppCoordinator.swift */; };
 		4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC6C4268A9D5B003EC346 /* FileManager.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		4E0ACF63268908E1002AE129 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
 		4E0ACF6826892397002AE129 /* ActivityDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewModel.swift; sourceTree = "<group>"; };
+		4E2D1AC8268E70D4003ADEB3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4E3EC6C4268A9D5B003EC346 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				4E59DEF52686735800A712F0 /* Model */,
 				4E6ED2452682ABF500C1180D /* Views */,
 				4E6ED2352682A43400C1180D /* ActivityTrackerApp.swift */,
+				4E2D1AC8268E70D4003ADEB3 /* AppCoordinator.swift */,
 				4E6ED2392682A43400C1180D /* Assets.xcassets */,
 				4E6ED23E2682A43400C1180D /* Info.plist */,
 				4E6ED23F2682A43400C1180D /* ActivityTracker.entitlements */,
@@ -344,6 +347,7 @@
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,
 				4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */,
 				4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */,
+				4E2D1AC9268E70D4003ADEB3 /* AppCoordinator.swift in Sources */,
 				4E6B8D5D268D16C800295E9B /* MainViewModel.swift in Sources */,
 				4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */,
 				4E59DEFE2686802F00A712F0 /* ActivityDetailMap.swift in Sources */,

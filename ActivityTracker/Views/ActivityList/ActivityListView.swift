@@ -12,57 +12,40 @@ import CoreGPX
 
 
 struct ActivityListView: View {
+    @EnvironmentObject var appCoordinator: AppCoordinator
     @StateObject var model: ActivityListViewModel
     @Binding var activity: Activity?
 
 
     var body: some View {
         List(selection: $activity) {
-            ForEach(model.db.currentActivities) { activity in
+            ForEach(model.currentActivities) { activity in
                 ActivityListItemView(activity: activity)
                     .tag(activity)
             }
         }
-        .toolbar {
-            Button(action: model.startImport) {
-                Image(systemName: "square.and.arrow.down")
+        .toolbar() {
+            ToolbarItem(placement: .principal) {
+                Button(action: model.startImport) {
+                    Image(systemName: "square.and.arrow.down")
+                }
+            }
+            ToolbarItem(placement: .status) {
+                Button(action: { appCoordinator.zoomResetAction?() }) {
+                    Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
+                }
             }
         }
-        .fileImporter(
-            isPresented: $model.isImporting,
-            allowedContentTypes: allowedContentTypes,
-            onCompletion: model.completion(result:)
-        )
-        .alert(isPresented: $model.isError, content: alert)
         .frame(idealWidth: 300)
-    }
-}
-
-
-// MARK: - Private
-
-private extension ActivityListView {
-    func alert() -> Alert {
-        Alert(
-            title: Text("Error"),
-            message: Text(model.errorMessage),
-            dismissButton: .default(Text("OK"))
-        )
-    }
-
-
-    var allowedContentTypes: [UTType] {
-        [
-            UTType(filenameExtension: "fit") ?? .xml,
-            UTType(filenameExtension: "gpx") ?? .xml
-        ]
     }
 }
 
 
 #if DEBUG
 struct ActivityListView_Previews: PreviewProvider {
-    private static let model = ActivityListViewModel(db: .dummy)
+    private static let db = Database.dummy
+    private static let appCoordinator = AppCoordinator(db: db)
+    private static let model = ActivityListViewModel(appCoordinator: appCoordinator)
     static var previews: some View {
         ActivityListView(model: model, activity: .constant(nil))
     }

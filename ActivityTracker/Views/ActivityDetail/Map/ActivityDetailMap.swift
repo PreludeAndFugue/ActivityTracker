@@ -9,7 +9,7 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
-final class ActivityDetailMap: NSObject, NSViewRepresentable {
+struct ActivityDetailMap: NSViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if mapView.overlays.count > 1, let o = mapView.overlays.first {
@@ -23,13 +23,14 @@ final class ActivityDetailMap: NSObject, NSViewRepresentable {
     }
 
 
+    @EnvironmentObject var appCoordinator: AppCoordinator
+    @EnvironmentObject var gpxReader: GpxReader
+
     var activity: Activity?
-    private let gpxReader: GpxReader
 
 
-    init(activity: Activity?, gpxReader: GpxReader) {
+    init(activity: Activity?) {
         self.activity = activity
-        self.gpxReader = gpxReader
     }
 
     
@@ -46,6 +47,10 @@ final class ActivityDetailMap: NSObject, NSViewRepresentable {
         DispatchQueue.main.async {
             nsView.setRegion(self.makeRegion(coordinates), animated: true)
             nsView.addOverlay(self.makeOverlay(coordinates))
+        }
+        appCoordinator.zoomResetAction = {
+            let coordinates = self.makeCoordinates(for: self.activity)
+            nsView.setRegion(self.makeRegion(coordinates), animated: true)
         }
     }
 

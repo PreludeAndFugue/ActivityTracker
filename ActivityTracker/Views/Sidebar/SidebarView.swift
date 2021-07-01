@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @EnvironmentObject var db: Database
     @StateObject var vm = SidebarViewModel()
 
 
