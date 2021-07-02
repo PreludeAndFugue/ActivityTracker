@@ -23,9 +23,4 @@ final class ActivityListViewModel: ObservableObject {
         self.appCoordinator = appCoordinator
         selectedActivity = appCoordinator.firstActivity
     }
-
-
-    func startImport() {
-        appCoordinator.startImport()
-    }
 }

@@ -16,6 +16,18 @@ struct ActivityTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(model: MainViewModel())
+                .toolbar() {
+                    ToolbarItem(placement: .principal) {
+                        Button(action: appCoordinator.startImport) {
+                            Image(systemName: "square.and.arrow.down")
+                        }
+                    }
+                    ToolbarItem(placement: .status) {
+                        Button(action: { appCoordinator.zoomResetAction?() }) {
+                            Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
+                        }
+                    }
+                }
                 .environmentObject(appCoordinator)
                 .environmentObject(gpxReader)
         }

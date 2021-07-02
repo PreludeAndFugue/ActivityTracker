@@ -24,18 +24,6 @@ struct ActivityListView: View {
                     .tag(activity)
             }
         }
-        .toolbar() {
-            ToolbarItem(placement: .principal) {
-                Button(action: model.startImport) {
-                    Image(systemName: "square.and.arrow.down")
-                }
-            }
-            ToolbarItem(placement: .status) {
-                Button(action: { appCoordinator.zoomResetAction?() }) {
-                    Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
-                }
-            }
-        }
         .frame(idealWidth: 300)
     }
 }
