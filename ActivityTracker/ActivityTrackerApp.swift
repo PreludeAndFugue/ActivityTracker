@@ -22,11 +22,30 @@ struct ActivityTrackerApp: App {
                             Image(systemName: "square.and.arrow.down")
                         }
                     }
+
+                    ToolbarItem(placement: .principal) {
+                        Button(action: {}) {
+                            Image(systemName: "square.and.arrow.down.on.square")
+                        }
+                    }
+
                     ToolbarItem(placement: .status) {
                         Button(action: { appCoordinator.zoomResetAction?() }) {
                             Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
                         }
                     }
+                }
+                .fileImporter(
+                    isPresented: $appCoordinator.isImporting,
+                    allowedContentTypes: appCoordinator.allowedContentTypes,
+                    onCompletion: appCoordinator.importCompletion(result:)
+                )
+                .alert(isPresented: $appCoordinator.isError) {
+                    Alert(
+                        title: Text("Error"),
+                        message: Text(appCoordinator.errorMessage),
+                        dismissButton: .cancel()
+                    )
                 }
                 .environmentObject(appCoordinator)
                 .environmentObject(gpxReader)

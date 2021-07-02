@@ -27,18 +27,6 @@ struct MainView: View {
         .onAppear() {
             model.selectedActivity = appCoordinator.firstActivity
         }
-        .fileImporter(
-            isPresented: $appCoordinator.isImporting,
-            allowedContentTypes: appCoordinator.allowedContentTypes,
-            onCompletion: appCoordinator.importCompletion(result:)
-        )
-        .alert(isPresented: $appCoordinator.isError) {
-            Alert(
-                title: Text("Error"),
-                message: Text(appCoordinator.errorMessage),
-                dismissButton: .cancel()
-            )
-        }
     }
 }
 
