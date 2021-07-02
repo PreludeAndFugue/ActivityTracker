@@ -30,7 +30,8 @@ final class AppCoordinator: ObservableObject {
 
     let allowedContentTypes: [UTType] = [
         UTType(filenameExtension: "fit") ?? .xml,
-        UTType(filenameExtension: "gpx") ?? .xml
+        UTType(filenameExtension: "gpx") ?? .xml,
+        UTType.commaSeparatedText
     ]
 
 
@@ -65,6 +66,8 @@ private extension AppCoordinator {
             openGpx(url: url)
         case "fit":
             openFit(url: url)
+        case "csv":
+            bulkStravaImport(url: url)
         default:
             print("unknown extension", url.pathExtension)
         }
@@ -83,6 +86,11 @@ private extension AppCoordinator {
 
 
     func openFit(url: URL) {
+        print("fit import")
+    }
 
+
+    func bulkStravaImport(url: URL) {
+        print("bulk strava import")
     }
 }
