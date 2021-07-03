@@ -11,16 +11,22 @@ struct ActivityListItemView: View {
     let activity: Activity
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text(activity.title)
+                    .font(.headline)
+
 
                 Spacer()
 
                 Text(activity.dateString)
+                    .font(.caption2)
+                    .foregroundColor(Color.gray)
             }
-            Text("Type: \(activity.type.title)")
+            Text(activity.distanceInKilometres)
+            Text(activity.elapsedTimeString)
         }
+        .padding(4)
     }
 }
 
