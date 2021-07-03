@@ -19,10 +19,7 @@ struct MainView: View {
                 model: ActivityListViewModel(appCoordinator: appCoordinator),
                 activity: $model.selectedActivity
             )
-            ActivityDetailView(
-                model: ActivityDetailViewModel(),
-                activity: $model.selectedActivity
-            )
+            ActivityDetailView(activity: $model.selectedActivity)
         }
         .onAppear() {
             model.selectedActivity = appCoordinator.firstActivity
