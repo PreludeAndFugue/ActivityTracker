@@ -8,13 +8,6 @@
 import Combine
 import Foundation
 
-import zlib
-
-
-func bla() {
-    
-}
-
 import SwiftCSV
 
 /// Import a Strava export.
@@ -88,7 +81,7 @@ private extension StravaReader {
             elapsedTime: Double(row[Columns.elapsedTime.rawValue]) ?? 0,
             distance: Double(row[Columns.distance.rawValue]) ?? 0,
             fileName: destination?.absoluteString ?? "",
-            fileType: .gpx
+            fileType: destination?.fileType
         )
     }
 

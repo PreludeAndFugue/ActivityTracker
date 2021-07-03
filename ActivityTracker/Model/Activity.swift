@@ -19,7 +19,7 @@ struct Activity: Identifiable, Codable {
     let elapsedTime: TimeInterval
     let distance: Double
     let fileName: String
-    let fileType: FileType
+    let fileType: URL.FileType?
 
 
     var dateString: String {
@@ -54,14 +54,6 @@ extension Activity {
             case .unknown: return "unknown"
             }
         }
-    }
-}
-
-
-extension Activity {
-    enum FileType: String, Codable {
-        case gpx
-        case fit
     }
 }
 

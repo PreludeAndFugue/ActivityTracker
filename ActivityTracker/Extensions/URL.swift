@@ -8,10 +8,11 @@
 import Foundation
 
 extension URL {
-    enum FileType: String {
+    enum FileType: String, Codable {
         case gpx
         case fit
         case gz
+        case tcx
     }
 
 

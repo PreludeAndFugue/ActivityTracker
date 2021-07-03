@@ -72,6 +72,12 @@ private extension ActivityDetailMap {
             return fitReader.coordinates(for: activity)
         case .gpx:
             return gpxReader.coordinates(for: activity)
+        case .gz:
+            return []
+        case .tcx:
+            return []
+        case .none:
+            return []
         }
     }
 
