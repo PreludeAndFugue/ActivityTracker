@@ -24,7 +24,8 @@ extension Activity {
             date: Date(),
             elapsedTime: 1000,
             distance: 10_000,
-            fileName: "filename.gpx"
+            fileName: "filename.gpx",
+            fileType: .gpx
         )
     }
 }

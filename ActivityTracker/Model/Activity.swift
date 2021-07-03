@@ -19,6 +19,7 @@ struct Activity: Identifiable, Codable {
     let elapsedTime: TimeInterval
     let distance: Double
     let fileName: String
+    let fileType: FileType
 
 
     var dateString: String {
@@ -53,6 +54,14 @@ extension Activity {
 }
 
 
+extension Activity {
+    enum FileType: String, Codable {
+        case gpx
+        case fit
+    }
+}
+
+
 extension Activity: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -72,6 +81,7 @@ extension Activity: FetchableRecord, TableRecord, PersistableRecord {
         case elapsedTime
         case distance
         case fileName
+        case fileType
     }
 }
 

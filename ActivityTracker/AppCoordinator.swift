@@ -86,7 +86,13 @@ private extension AppCoordinator {
 
 
     func openFit(url: URL) {
-        print("fit import")
+        do {
+            let activity = try FitReader.shared.createActivity(with: url)
+            db.create(activity)
+        } catch let error {
+            self.error = error
+            isError = true
+        }
     }
 
 

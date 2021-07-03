@@ -25,6 +25,7 @@ struct ActivityDetailMap: NSViewRepresentable {
 
     @EnvironmentObject var appCoordinator: AppCoordinator
     @EnvironmentObject var gpxReader: GpxReader
+    @EnvironmentObject var fitReader: FitReader
 
     var activity: Activity?
 
@@ -68,7 +69,12 @@ private extension ActivityDetailMap {
         guard let activity = activity else {
             return []
         }
-        return gpxReader.coordinates(for: activity)
+        switch activity.fileType {
+        case .fit:
+            return fitReader.coordinates(for: activity)
+        case .gpx:
+            return gpxReader.coordinates(for: activity)
+        }
     }
 
 

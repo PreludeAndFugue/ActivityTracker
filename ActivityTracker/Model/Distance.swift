@@ -8,6 +8,7 @@
 import Foundation
 
 import CoreGPX
+import FitFileParser
 
 /// Approximation of the Earth's radius in kilometres
 private let r = 6_371.0
@@ -92,6 +93,28 @@ func length(of points: [GPXWaypoint]) -> Double {
             lng1: p1.lng,
             lat2: p2.lat,
             lng2: p2.lng
+        )
+    }
+    return result
+}
+
+
+/// Length of a list of fit file record messages.
+///
+/// - Parameter records: The record messages.
+/// - Returns: Length in metres.
+func length(of records: [FitMessage]) -> Double {
+    let positions = records.compactMap({ $0.interpretedField(key: "position")?.coordinate })
+    if positions.isEmpty {
+        return 0
+    }
+    var result = 0.0
+    for (p1, p2) in zip(positions, positions[1...]) {
+        result += distanceDegrees(
+            lat1: p1.latitude,
+            lng1: p1.longitude,
+            lat2: p2.latitude,
+            lng2: p2.longitude
         )
     }
     return result

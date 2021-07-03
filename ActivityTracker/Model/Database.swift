@@ -79,6 +79,7 @@ private extension Database {
                 t.column(Activity.Columns.elapsedTime.rawValue, .double)
                 t.column(Activity.Columns.distance.rawValue, .double)
                 t.column(Activity.Columns.fileName.rawValue, .text)
+                t.column(Activity.Columns.fileType.rawValue, .text)
             }
         }
     }

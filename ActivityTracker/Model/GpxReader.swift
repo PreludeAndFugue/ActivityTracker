@@ -10,25 +10,17 @@ import Foundation
 
 import CoreGPX
 
-class GpxReader: ObservableObject {
-    enum Error: Swift.Error {
-        case noAccessToDocumentFolder
-        case couldNotSaveFile
-        case couldNotReadData
-        case moreThanOneTrack
-    }
-
-
+class GpxReader: ObservableObject, ReaderAPI {
     static let shared = GpxReader()
 
 
     func createActivity(with url: URL) throws -> Activity {
         let destination = try saveFileToSandbox(url: url)
         guard let gpx = GPXParser(withURL: url)?.parsedData() else {
-            throw Error.couldNotReadData
+            throw ReaderError.couldNotReadData
         }
         if gpx.tracks.count != 1 {
-            throw Error.moreThanOneTrack
+            throw ReaderError.moreThanOneTrack
         }
         let track = gpx.tracks[0]
         let points = track.segments.flatMap({ $0.points })
@@ -40,7 +32,8 @@ class GpxReader: ObservableObject {
             date: gpx.metadata?.time ?? Date(),
             elapsedTime: getElapsedTime(points: points),
             distance: length(of: points),
-            fileName: destination.absoluteString
+            fileName: destination.absoluteString,
+            fileType: .gpx
         )
     }
 
@@ -77,18 +70,5 @@ private extension GpxReader {
     func coordinate(from point: GPXTrackPoint) -> CLLocationCoordinate2D? {
         guard let lat = point.latitude, let lng = point.longitude else { return nil }
         return CLLocationCoordinate2D(latitude: lat, longitude: lng)
-    }
-
-
-    func saveFileToSandbox(url: URL) throws -> URL {
-        let fm = FileManager.default
-        guard var destination = fm.documentDirectory else {
-            throw Error.noAccessToDocumentFolder
-        }
-        destination.appendPathComponent(url.lastPathComponent)
-        do {
-            try FileManager.default.copyItem(at: url, to: destination)
-        }
-        return destination
     }
 }

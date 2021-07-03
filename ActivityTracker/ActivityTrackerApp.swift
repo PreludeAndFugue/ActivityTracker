@@ -11,6 +11,7 @@ import SwiftUI
 struct ActivityTrackerApp: App {
     @StateObject var appCoordinator = AppCoordinator(db: try! Database())
     @StateObject var gpxReader = GpxReader.shared
+    @StateObject var fitReader = FitReader.shared
 
 
     var body: some Scene {
@@ -43,6 +44,7 @@ struct ActivityTrackerApp: App {
                 }
                 .environmentObject(appCoordinator)
                 .environmentObject(gpxReader)
+                .environmentObject(fitReader)
         }
     }
 }
