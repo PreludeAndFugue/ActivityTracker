@@ -18,19 +18,21 @@ struct ActivityTrackerApp: App {
         WindowGroup {
             MainView()
                 .toolbar() {
-                    ToolbarItem(placement: .principal) {
+                    ToolbarItemGroup(placement: .destructiveAction) {
+                        Button(action: {}) {
+                            Image(systemName: "trash")
+                        }
+                    }
+                    
+                    ToolbarItemGroup(placement: .principal) {
                         Button(action: appCoordinator.startImport) {
                             Image(systemName: "square.and.arrow.down")
                         }
-                    }
 
-                    ToolbarItem(placement: .principal) {
                         Button(action: appCoordinator.startStravaImport) {
                             Image(systemName: "square.and.arrow.down.on.square")
                         }
-                    }
 
-                    ToolbarItem(placement: .status) {
                         Button(action: { appCoordinator.zoomResetAction?() }) {
                             Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
                         }
