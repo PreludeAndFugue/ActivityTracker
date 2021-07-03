@@ -5,12 +5,11 @@
 //  Created by gary on 25/06/2021.
 //
 
-import Combine
 import Foundation
 
 import GRDB
 
-final class Database: ObservableObject {
+final class Database {
     enum Error: Swift.Error {
         case noAccessToDocumentFolder
     }
@@ -18,8 +17,6 @@ final class Database: ObservableObject {
     private static let fileName = "ActivityTracker.sqlite"
 
     private let queue: DatabaseQueue
-
-    @Published var currentActivities: [Activity] = []
 
 
     init(inMemory: Bool = false) throws {
@@ -29,12 +26,16 @@ final class Database: ObservableObject {
             queue = try DatabaseQueue(path: Self.path())
         }
         createActivityTable()
-        currentActivities = get(for: nil)
     }
 
 
-    func filter(for type: Activity.ActivityType?) {
-        currentActivities = get(for: type)
+    func get(for type: Activity.ActivityType?) -> [Activity] {
+        return try! queue.read() { db in
+            try Activity.all()
+                .filter(type: type)
+                .order(Activity.Columns.date.desc)
+                .fetchAll(db)
+        }
     }
 
 
@@ -42,7 +43,6 @@ final class Database: ObservableObject {
         try! queue.write() { db in
             try activity.insert(db)
         }
-        currentActivities = get(for: nil)
     }
 
 
@@ -52,7 +52,6 @@ final class Database: ObservableObject {
                 try activity.insert(db)
             }
         }
-        currentActivities = get(for: nil)
     }
 }
 
@@ -66,15 +65,6 @@ private extension Database {
         }
         destination.appendPathComponent(fileName)
         return destination.absoluteString
-    }
-
-
-    func get(for type: Activity.ActivityType?) -> [Activity] {
-        return try! queue.read() { db in
-            try Activity.all()
-                .order(Activity.Columns.date.desc)
-                .fetchAll(db)
-        }
     }
 
 
@@ -92,6 +82,16 @@ private extension Database {
                 t.column(Activity.Columns.fileType.rawValue, .text)
             }
         }
+    }
+}
+
+
+extension DerivableRequest where RowDecoder == Activity {
+    func filter(type: Activity.ActivityType?) -> Self {
+        guard let type = type else {
+            return self
+        }
+        return filter(Activity.Columns.type == type.rawValue)
     }
 }
 

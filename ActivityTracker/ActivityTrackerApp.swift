@@ -16,7 +16,7 @@ struct ActivityTrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView(model: MainViewModel())
+            MainView()
                 .toolbar() {
                     ToolbarItem(placement: .principal) {
                         Button(action: appCoordinator.startImport) {

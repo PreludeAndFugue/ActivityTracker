@@ -9,20 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var appCoordinator: AppCoordinator
-
-    @StateObject var model: MainViewModel
     
     var body: some View {
         NavigationView {
             SidebarView()
-            ActivityListView(
-                model: ActivityListViewModel(appCoordinator: appCoordinator),
-                activity: $model.selectedActivity
-            )
-            ActivityDetailView(activity: $model.selectedActivity)
-        }
-        .onAppear() {
-            model.selectedActivity = appCoordinator.firstActivity
+            ActivityListView()
+            ActivityDetailView()
         }
     }
 }
@@ -31,7 +23,7 @@ struct MainView: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(model: MainViewModel())
+        MainView()
     }
 }
 #endif

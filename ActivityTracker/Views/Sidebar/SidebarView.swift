@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SidebarView: View {
+    @EnvironmentObject var coordinator: AppCoordinator
     @StateObject var vm = SidebarViewModel()
 
 
@@ -36,7 +37,8 @@ struct SidebarView: View {
             Spacer()
         }
         .onChange(of: vm.selectionActivity, perform: { selection in
-            print("update sidebar selection")
+            guard let selection = selection else { return }
+            coordinator.sidebar(selection: selection)
         })
         .listStyle(SidebarListStyle())
         .frame(idealWidth: 200)

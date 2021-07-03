@@ -10,10 +10,9 @@ import SwiftUI
 
 struct ActivityDetailView: View {
     @EnvironmentObject var appCoordinator: AppCoordinator
-    @Binding var activity: Activity?
 
     var body: some View {
-        ActivityDetailMap(activity: activity)
+        ActivityDetailMap(activity: appCoordinator.currentActivity)
             .overlay(overlay, alignment: .topLeading)
     }
 }
@@ -27,12 +26,12 @@ private extension ActivityDetailView {
         DisclosureGroup("Activity information") {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(activity?.title ?? "")
-                    Text(activity?.dateString ?? "")
-                    Text("Type: " + (activity?.type.title ?? ""))
-                    Text("Gear: " + (activity?.gear ?? ""))
-                    Text("Distance: " + (activity?.distanceInKilometres ?? ""))
-                    Text("Duration: " + (activity?.elapsedTimeString ?? ""))
+                    Text(title)
+                    Text(dateString)
+                    Text("Type: \(typeString)")
+                    Text("Gear: \(gearString)")
+                    Text("Distance: \(distanceString)")
+                    Text("Duration: \(durationString)")
                 }
                 Spacer()
             }
@@ -43,13 +42,49 @@ private extension ActivityDetailView {
         .cornerRadius(8)
         .padding(10)
     }
+
+
+    var title: String {
+        appCoordinator.currentActivity?.title ?? ""
+    }
+
+
+    var dateString: String {
+        appCoordinator.currentActivity?.dateString ?? ""
+    }
+
+
+    var typeString: String {
+        guard let type = appCoordinator.currentActivity?.type else {
+            return ""
+        }
+        return type.title
+    }
+
+
+    var gearString: String {
+        guard let gear = appCoordinator.currentActivity?.gear else {
+            return ""
+        }
+        return gear.description
+    }
+
+
+    var distanceString: String {
+        appCoordinator.currentActivity?.distanceInKilometres ?? ""
+    }
+
+
+    var durationString: String {
+        appCoordinator.currentActivity?.elapsedTimeString ?? ""
+    }
 }
 
 
 #if DEBUG
 struct ActivityDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityDetailView(activity: .constant(.dummy1))
+        ActivityDetailView()
             .frame(width: 600, height: 600)
             .environmentObject(AppCoordinator(db: .dummy))
     }

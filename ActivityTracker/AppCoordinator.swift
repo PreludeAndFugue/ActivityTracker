@@ -14,19 +14,18 @@ final class AppCoordinator: ObservableObject {
 
     private var error: Error?
 
+    @Published var currentActivities: [Activity] = []
+    @Published var currentActivity: Activity? = nil
+    @Published var sidebarSelection: SidebarViewModel.Selection = .allActivities
     @Published var isError = false
     @Published var isImporting = false
 
-    let db: Database
+    private let db: Database
 
     var zoomResetAction: ZoomResetAction?
 
     var errorMessage: String {
         error?.localizedDescription ?? "Unknown error"
-    }
-
-    var firstActivity: Activity? {
-        db.currentActivities.first
     }
 
     let allowedContentTypes: [UTType] = [
@@ -38,6 +37,8 @@ final class AppCoordinator: ObservableObject {
 
     init(db: Database) {
         self.db = db
+        currentActivities = db.get(for: nil)
+        currentActivity = currentActivities.first
     }
 
 
@@ -63,6 +64,30 @@ final class AppCoordinator: ObservableObject {
             self.error = error
             isError = true
         }
+    }
+
+
+    func sidebar(selection: SidebarViewModel.Selection) {
+        switch selection {
+        case .allActivities:
+            currentActivities = db.get(for: nil)
+            currentActivity = currentActivities.first
+        case .bike:
+            currentActivities = db.get(for: .bike)
+            currentActivity = currentActivities.first
+        case .run:
+            currentActivities = db.get(for: .run)
+            currentActivity = currentActivities.first
+        case .activitiesWeek:
+            break
+        case .activitiesMonth:
+            break
+        case .statsWeek:
+            break
+        case .statsMonth:
+            break
+        }
+        self.sidebarSelection = selection
     }
 }
 
