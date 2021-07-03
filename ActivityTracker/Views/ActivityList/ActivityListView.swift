@@ -22,7 +22,7 @@ struct ActivityListView: View {
                     .tag(activity)
             }
         }
-        .frame(idealWidth: 300)
+        .frame(minWidth: 300)
     }
 }
 

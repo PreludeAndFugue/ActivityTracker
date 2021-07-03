@@ -12,9 +12,14 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            SidebarView()
-            ActivityListView()
-            ActivityDetailView()
+            if appCoordinator.isShowingActivities {
+                SidebarView()
+                ActivityListView()
+                ActivityDetailView()
+            } else {
+                SidebarView()
+                Text("Statistics")
+            }
         }
     }
 }

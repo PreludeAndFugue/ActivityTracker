@@ -16,7 +16,7 @@ final class AppCoordinator: ObservableObject {
 
     @Published var currentActivities: [Activity] = []
     @Published var currentActivity: Activity? = nil
-    @Published var sidebarSelection: SidebarViewModel.Selection = .allActivities
+    @Published var sidebarSelection: SidebarView.Selection? = .allActivities
     @Published var isError = false
     @Published var isImporting = false
 
@@ -26,6 +26,10 @@ final class AppCoordinator: ObservableObject {
 
     var errorMessage: String {
         error?.localizedDescription ?? "Unknown error"
+    }
+
+    var isShowingActivities: Bool {
+        sidebarSelection?.isShowingActivities ?? true
     }
 
     let allowedContentTypes: [UTType] = [
@@ -67,8 +71,8 @@ final class AppCoordinator: ObservableObject {
     }
 
 
-    func sidebar(selection: SidebarViewModel.Selection) {
-        switch selection {
+    func sidebar() {
+        switch sidebarSelection {
         case .allActivities:
             currentActivities = db.get(for: nil)
             currentActivity = currentActivities.first
@@ -89,8 +93,9 @@ final class AppCoordinator: ObservableObject {
             break
         case .statsMonth:
             break
+        case .none:
+            break
         }
-        self.sidebarSelection = selection
     }
 }
 

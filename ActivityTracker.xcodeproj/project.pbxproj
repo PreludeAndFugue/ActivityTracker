@@ -19,7 +19,6 @@
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
 		4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF8268673D100A712F0 /* Activity+Debug.swift */; };
-		4E59DEFB2686766D00A712F0 /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEFA2686766D00A712F0 /* SidebarViewModel.swift */; };
 		4E59DEFE2686802F00A712F0 /* ActivityDetailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEFD2686802F00A712F0 /* ActivityDetailMap.swift */; };
 		4E59DF00268681E000A712F0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEFF268681E000A712F0 /* Database.swift */; };
 		4E6ED2362682A43400C1180D /* ActivityTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2352682A43400C1180D /* ActivityTrackerApp.swift */; };
@@ -56,7 +55,6 @@
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4E59DEF8268673D100A712F0 /* Activity+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Debug.swift"; sourceTree = "<group>"; };
-		4E59DEFA2686766D00A712F0 /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 		4E59DEFD2686802F00A712F0 /* ActivityDetailMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailMap.swift; sourceTree = "<group>"; };
 		4E59DEFF268681E000A712F0 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		4E6ED2322682A43400C1180D /* ActivityTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				4E6ED2462682AC0600C1180D /* SidebarView.swift */,
-				4E59DEFA2686766D00A712F0 /* SidebarViewModel.swift */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				4E6ED2362682A43400C1180D /* ActivityTrackerApp.swift in Sources */,
 				4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */,
 				4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */,
-				4E59DEFB2686766D00A712F0 /* SidebarViewModel.swift in Sources */,
 				4E2F185A2690CC2100E218BF /* URL.swift in Sources */,
 				4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */,
 				4E2F184E269087CB00E218BF /* FitReader.swift in Sources */,

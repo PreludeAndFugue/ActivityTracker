@@ -8,42 +8,65 @@
 import SwiftUI
 
 struct SidebarView: View {
+    enum Selection {
+        case allActivities
+        case bike
+        case run
+        case walk
+
+        case activitiesWeek
+        case activitiesMonth
+
+        case statsWeek
+        case statsMonth
+    }
+
     @EnvironmentObject var coordinator: AppCoordinator
-    @StateObject var vm = SidebarViewModel()
 
 
     var body: some View {
         VStack {
-            List(selection: $vm.selectionActivity) {
+            List(selection: $coordinator.sidebarSelection) {
                 Section(header: Text("Activities")) {
                     Text("All activities")
-                        .tag(SidebarViewModel.Selection.allActivities)
+                        .tag(SidebarView.Selection.allActivities)
                     Text("Bike")
-                        .tag(SidebarViewModel.Selection.bike)
+                        .tag(SidebarView.Selection.bike)
                     Text("Run")
-                        .tag(SidebarViewModel.Selection.run)
+                        .tag(SidebarView.Selection.run)
                     Text("Walk")
-                        .tag(SidebarViewModel.Selection.walk)
+                        .tag(SidebarView.Selection.walk)
                     Text("This week")
-                        .tag(SidebarViewModel.Selection.activitiesWeek)
+                        .tag(SidebarView.Selection.activitiesWeek)
                     Text("This month")
-                        .tag(SidebarViewModel.Selection.activitiesMonth)
+                        .tag(SidebarView.Selection.activitiesMonth)
                 }
 
                 Section(header: Text("Statistics")) {
-                    Text("This week").tag(SidebarViewModel.Selection.statsWeek)
-                    Text("This month").tag(SidebarViewModel.Selection.statsMonth)
+                    Text("This week").tag(SidebarView.Selection.statsWeek)
+                    Text("This month").tag(SidebarView.Selection.statsMonth)
                 }
             }
 
             Spacer()
         }
-        .onChange(of: vm.selectionActivity, perform: { selection in
-            guard let selection = selection else { return }
-            coordinator.sidebar(selection: selection)
+        .onChange(of: coordinator.sidebarSelection, perform: { selection in
+            coordinator.sidebar()
         })
         .listStyle(SidebarListStyle())
         .frame(idealWidth: 200)
+    }
+}
+
+
+extension SidebarView.Selection {
+    var isShowingActivities: Bool {
+        switch self {
+        case .allActivities, .bike, .run, .walk, .activitiesWeek, .activitiesMonth:
+            return true
+        case .statsWeek, .statsMonth:
+            return false
+        }
     }
 }
 
