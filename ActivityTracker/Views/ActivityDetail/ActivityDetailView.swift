@@ -38,7 +38,7 @@ private extension ActivityDetailView {
             }
         }
         .padding(8)
-        .background(Color.init(.sRGB, white: 0, opacity: 0.4))
+        .background(Color("DisclosureBackground"))
         .frame(maxWidth: 250, alignment: .leading)
         .cornerRadius(8)
         .padding(10)
