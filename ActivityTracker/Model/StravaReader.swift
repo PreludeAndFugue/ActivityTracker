@@ -19,6 +19,7 @@ final class StravaReader: ObservableObject {
     }
 
     enum Columns: Int, CaseIterable {
+        case activityDate = 1
         case activityName = 2
         case activityType = 3
         case activityGear = 9
@@ -32,6 +33,8 @@ final class StravaReader: ObservableObject {
 
 
     static let shared = StravaReader()
+
+    private lazy var dateFormatter = makeDateFormatter()
 
 
     func createActivities(with directoryUrl: URL) throws -> [Activity] {
@@ -77,7 +80,7 @@ private extension StravaReader {
             type: activityType(from: row[Columns.activityType.rawValue]),
             gear: row[Columns.activityGear.rawValue],
             title: row[Columns.activityName.rawValue],
-            date: Date(),
+            date: dateFormatter.date(from: row[Columns.activityDate.rawValue]) ?? Date(),
             elapsedTime: Double(row[Columns.elapsedTime.rawValue]) ?? 0,
             distance: Double(row[Columns.distance.rawValue]) ?? 0,
             fileName: destination?.absoluteString ?? "",
@@ -108,12 +111,20 @@ private extension StravaReader {
         default: return .unknown
         }
     }
+
+
+    func makeDateFormatter() -> DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "dd MMM yyyy, HH:mm:ss"
+        return df
+    }
 }
 
 
 extension StravaReader.Columns {
     var name: String {
         switch self {
+        case .activityDate: return "Activity Date"
         case .activityName: return "Activity Name"
         case .activityType: return "Activity Type"
         case .activityGear: return "Activity Gear"
