@@ -12,6 +12,8 @@ final class SidebarViewModel: ObservableObject {
         case allActivities
         case bike
         case run
+        case walk
+
         case activitiesWeek
         case activitiesMonth
 

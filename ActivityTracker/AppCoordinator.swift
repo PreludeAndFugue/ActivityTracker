@@ -78,6 +78,9 @@ final class AppCoordinator: ObservableObject {
         case .run:
             currentActivities = db.get(for: .run)
             currentActivity = currentActivities.first
+        case .walk:
+            currentActivities = db.get(for: .walk)
+            currentActivity = currentActivities.first
         case .activitiesWeek:
             break
         case .activitiesMonth:

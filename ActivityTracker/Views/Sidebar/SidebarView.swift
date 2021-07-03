@@ -22,6 +22,8 @@ struct SidebarView: View {
                         .tag(SidebarViewModel.Selection.bike)
                     Text("Run")
                         .tag(SidebarViewModel.Selection.run)
+                    Text("Walk")
+                        .tag(SidebarViewModel.Selection.walk)
                     Text("This week")
                         .tag(SidebarViewModel.Selection.activitiesWeek)
                     Text("This month")
