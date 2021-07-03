@@ -8,6 +8,13 @@
 import Combine
 import Foundation
 
+import zlib
+
+
+func bla() {
+    
+}
+
 import SwiftCSV
 
 /// Import a Strava export.
@@ -72,7 +79,6 @@ private extension StravaReader {
 
     func activity(from row: [String], csvUrl: URL) throws -> Activity {
         let destination = try copyFile(row, csvUrl: csvUrl)
-        print(destination?.absoluteString)
         return Activity(
             id: UUID().uuidString,
             type: activityType(from: row[Columns.activityType.rawValue]),
@@ -94,7 +100,8 @@ private extension StravaReader {
         do {
             let destination = try FileManager.default.copyFileToSandbox(url: path)
             return destination
-        } catch {
+        } catch let error {
+            print(error)
             return nil
         }
     }

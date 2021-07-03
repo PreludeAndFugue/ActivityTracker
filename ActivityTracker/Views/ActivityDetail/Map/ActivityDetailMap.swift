@@ -42,7 +42,6 @@ struct ActivityDetailMap: NSViewRepresentable {
     func updateNSView(_ nsView: MKMapView, context: Context) {
         guard let activity = activity else { return }
         let coordinates = makeCoordinates(for: activity)
-        removeOldOverlay(map: nsView)
         nsView.removeOverlays(nsView.overlays)
         DispatchQueue.main.async {
             nsView.setRegion(self.makeRegion(coordinates), animated: true)

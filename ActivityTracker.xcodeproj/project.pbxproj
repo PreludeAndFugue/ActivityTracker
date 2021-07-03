@@ -14,6 +14,8 @@
 		4E2F18502690960D00E218BF /* ReaderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F184F2690960D00E218BF /* ReaderAPI.swift */; };
 		4E2F185326909F0C00E218BF /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2F185226909F0C00E218BF /* SwiftCSV */; };
 		4E2F185526909F3E00E218BF /* StravaReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F185426909F3E00E218BF /* StravaReader.swift */; };
+		4E2F18582690C96200E218BF /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2F18572690C96200E218BF /* Gzip */; };
+		4E2F185A2690CC2100E218BF /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F18592690CC2100E218BF /* URL.swift */; };
 		4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC6C4268A9D5B003EC346 /* FileManager.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
@@ -52,6 +54,7 @@
 		4E2F184D269087CB00E218BF /* FitReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitReader.swift; sourceTree = "<group>"; };
 		4E2F184F2690960D00E218BF /* ReaderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderAPI.swift; sourceTree = "<group>"; };
 		4E2F185426909F3E00E218BF /* StravaReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaReader.swift; sourceTree = "<group>"; };
+		4E2F18592690CC2100E218BF /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		4E3EC6C4268A9D5B003EC346 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E0ACF6726890E09002AE129 /* GRDB in Frameworks */,
+				4E2F18582690C96200E218BF /* Gzip in Frameworks */,
 				4E2F185326909F0C00E218BF /* SwiftCSV in Frameworks */,
 				4E9CE5B72688D527002F6446 /* CoreGPX in Frameworks */,
 				4E9CE5BA2688D546002F6446 /* FitFileParser in Frameworks */,
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				4E3EC6C4268A9D5B003EC346 /* FileManager.swift */,
+				4E2F18592690CC2100E218BF /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				4E9CE5B92688D546002F6446 /* FitFileParser */,
 				4E0ACF6626890E09002AE129 /* GRDB */,
 				4E2F185226909F0C00E218BF /* SwiftCSV */,
+				4E2F18572690C96200E218BF /* Gzip */,
 			);
 			productName = ActivityTracker;
 			productReference = 4E6ED2322682A43400C1180D /* ActivityTracker.app */;
@@ -314,6 +320,7 @@
 				4E9CE5B82688D546002F6446 /* XCRemoteSwiftPackageReference "FitFileParser" */,
 				4E0ACF6526890E09002AE129 /* XCRemoteSwiftPackageReference "GRDB" */,
 				4E2F185126909F0C00E218BF /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				4E2F18562690C96200E218BF /* XCRemoteSwiftPackageReference "GzipSwift" */,
 			);
 			productRefGroup = 4E6ED2332682A43400C1180D /* Products */;
 			projectDirPath = "";
@@ -366,6 +373,7 @@
 				4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */,
 				4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */,
 				4E59DEFB2686766D00A712F0 /* SidebarViewModel.swift in Sources */,
+				4E2F185A2690CC2100E218BF /* URL.swift in Sources */,
 				4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */,
 				4E2F184E269087CB00E218BF /* FitReader.swift in Sources */,
 				4E6ED2472682AC0600C1180D /* SidebarView.swift in Sources */,
@@ -646,6 +654,14 @@
 				minimumVersion = 0.6.0;
 			};
 		};
+		4E2F18562690C96200E218BF /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		4E9CE5B52688D527002F6446 /* XCRemoteSwiftPackageReference "CoreGPX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vincentneo/CoreGPX";
@@ -674,6 +690,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E2F185126909F0C00E218BF /* XCRemoteSwiftPackageReference "SwiftCSV" */;
 			productName = SwiftCSV;
+		};
+		4E2F18572690C96200E218BF /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E2F18562690C96200E218BF /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
 		};
 		4E9CE5B62688D527002F6446 /* CoreGPX */ = {
 			isa = XCSwiftPackageProductDependency;
