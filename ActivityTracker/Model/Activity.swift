@@ -43,11 +43,15 @@ extension Activity {
     enum ActivityType: String, CaseIterable, Codable {
         case bike
         case run
+        case walk
+        case unknown
 
         var title: String {
             switch self {
             case .bike: return "bike"
             case .run: return "run"
+            case .walk: return "walk"
+            case .unknown: return "unknown"
             }
         }
     }

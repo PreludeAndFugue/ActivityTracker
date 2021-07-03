@@ -13,6 +13,7 @@
 		4E2F184E269087CB00E218BF /* FitReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F184D269087CB00E218BF /* FitReader.swift */; };
 		4E2F18502690960D00E218BF /* ReaderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F184F2690960D00E218BF /* ReaderAPI.swift */; };
 		4E2F185326909F0C00E218BF /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 4E2F185226909F0C00E218BF /* SwiftCSV */; };
+		4E2F185526909F3E00E218BF /* StravaReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F185426909F3E00E218BF /* StravaReader.swift */; };
 		4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC6C4268A9D5B003EC346 /* FileManager.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
@@ -50,6 +51,7 @@
 		4E2D1AC8268E70D4003ADEB3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4E2F184D269087CB00E218BF /* FitReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitReader.swift; sourceTree = "<group>"; };
 		4E2F184F2690960D00E218BF /* ReaderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderAPI.swift; sourceTree = "<group>"; };
+		4E2F185426909F3E00E218BF /* StravaReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaReader.swift; sourceTree = "<group>"; };
 		4E3EC6C4268A9D5B003EC346 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				4E2F184D269087CB00E218BF /* FitReader.swift */,
 				4EA1D6042688E38E004F7B83 /* GpxReader.swift */,
 				4E2F184F2690960D00E218BF /* ReaderAPI.swift */,
+				4E2F185426909F3E00E218BF /* StravaReader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6ED2382682A43400C1180D /* MainView.swift in Sources */,
+				4E2F185526909F3E00E218BF /* StravaReader.swift in Sources */,
 				4E0ACF64268908E1002AE129 /* ActivityListViewModel.swift in Sources */,
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,

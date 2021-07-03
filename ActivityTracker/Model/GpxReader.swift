@@ -15,7 +15,7 @@ class GpxReader: ObservableObject, ReaderAPI {
 
 
     func createActivity(with url: URL) throws -> Activity {
-        let destination = try saveFileToSandbox(url: url)
+        let destination = try FileManager.default.copyFileToSandbox(url: url)
         guard let gpx = GPXParser(withURL: url)?.parsedData() else {
             throw ReaderError.couldNotReadData
         }

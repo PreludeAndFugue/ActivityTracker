@@ -44,6 +44,16 @@ final class Database: ObservableObject {
         }
         currentActivities = get(for: nil)
     }
+
+
+    func create(_ activities: [Activity]) {
+        try! queue.write() { db in
+            for activity in activities {
+                try activity.insert(db)
+            }
+        }
+        currentActivities = get(for: nil)
+    }
 }
 
 

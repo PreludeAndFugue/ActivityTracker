@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Cocoa
 import UniformTypeIdentifiers
 
 final class AppCoordinator: ObservableObject {
@@ -42,6 +43,15 @@ final class AppCoordinator: ObservableObject {
 
     func startImport() {
         isImporting.toggle()
+    }
+
+
+    func startStravaImport() {
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        if panel.runModal() == .OK {
+            bulkStravaImport(url: panel.url!)
+        }
     }
 
 
@@ -97,6 +107,12 @@ private extension AppCoordinator {
 
 
     func bulkStravaImport(url: URL) {
-        print("bulk strava import")
+        do {
+            let activities = try StravaReader.shared.createActivities(with: url)
+            db.create(activities)
+        } catch let error {
+            self.error = error
+            isError = true
+        }
     }
 }

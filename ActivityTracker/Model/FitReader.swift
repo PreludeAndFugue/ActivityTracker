@@ -16,7 +16,7 @@ class FitReader: ObservableObject, ReaderAPI {
 
 
     func createActivity(with url: URL) throws -> Activity {
-        let destination = try saveFileToSandbox(url: url)
+        let destination = try FileManager.default.copyFileToSandbox(url: url)
         guard let fit = FitFile(file: url) else {
             throw ReaderError.couldNotReadData
         }

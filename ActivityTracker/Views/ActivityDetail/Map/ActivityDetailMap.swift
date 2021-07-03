@@ -12,9 +12,6 @@ import SwiftUI
 struct ActivityDetailMap: NSViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if mapView.overlays.count > 1, let o = mapView.overlays.first {
-                mapView.removeOverlay(o)
-            }
             let r = MKPolylineRenderer(overlay: overlay)
             r.strokeColor = .red
             r.lineWidth = 3
@@ -45,6 +42,8 @@ struct ActivityDetailMap: NSViewRepresentable {
     func updateNSView(_ nsView: MKMapView, context: Context) {
         guard let activity = activity else { return }
         let coordinates = makeCoordinates(for: activity)
+        removeOldOverlay(map: nsView)
+        nsView.removeOverlays(nsView.overlays)
         DispatchQueue.main.async {
             nsView.setRegion(self.makeRegion(coordinates), animated: true)
             nsView.addOverlay(self.makeOverlay(coordinates))

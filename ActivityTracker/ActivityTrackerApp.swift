@@ -24,6 +24,12 @@ struct ActivityTrackerApp: App {
                         }
                     }
 
+                    ToolbarItem(placement: .principal) {
+                        Button(action: appCoordinator.startStravaImport) {
+                            Image(systemName: "square.and.arrow.down.on.square")
+                        }
+                    }
+
                     ToolbarItem(placement: .status) {
                         Button(action: { appCoordinator.zoomResetAction?() }) {
                             Image(systemName: "arrow.up.left.and.down.right.magnifyingglass")
