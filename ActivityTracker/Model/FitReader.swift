@@ -36,13 +36,22 @@ class FitReader: ObservableObject, ReaderAPI {
 
 
     func coordinates(for activity: Activity) -> [CLLocationCoordinate2D] {
-        let url = URL(fileURLWithPath: activity.fileName)
-        var f = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        f.appendPathComponent(url.lastPathComponent)
+        let f = FileManager.default.url(for: activity)
         let fit = FitFile(file: f)
         return fit?
             .messages(forMessageType: .record)
             .compactMap({ $0.interpretedField(key: "position")?.coordinate }) ?? []
+    }
+
+
+    func elevation(for activity: Activity) -> [DistanceElevation] {
+        let f = FileManager.default.url(for: activity)
+        let fit = FitFile(file: f)
+        let x = fit?
+            .messages(forMessageType: .record)
+            .compactMap({ elevationDistance(for: $0) }) ?? []
+        print(x.count)
+        return x
     }
 }
 
@@ -68,5 +77,18 @@ private extension FitReader {
             return 0
         }
         return t2.timeIntervalSinceReferenceDate - t1.timeIntervalSinceReferenceDate
+    }
+
+
+    func elevationDistance(for record: FitMessage) -> DistanceElevation? {
+        guard
+            let elevationValue = record.interpretedValue(key: "altitude"),
+            let distanceValue = record.interpretedValue(key: "distance"),
+            case let FitValue.valueUnit(elevation, _) = elevationValue,
+            case let FitValue.valueUnit(distance, _) = distanceValue
+        else {
+            return nil
+        }
+        return DistanceElevation(distance: distance, elevation: elevation)
     }
 }

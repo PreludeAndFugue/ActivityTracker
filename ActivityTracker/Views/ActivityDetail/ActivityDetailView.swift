@@ -14,6 +14,7 @@ struct ActivityDetailView: View {
     var body: some View {
         ActivityDetailMap(activity: appCoordinator.currentActivity)
             .overlay(overlay, alignment: .topLeading)
+            .overlay(ElevationView(), alignment: .bottomLeading)
     }
 }
 

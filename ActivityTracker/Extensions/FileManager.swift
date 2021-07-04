@@ -15,6 +15,13 @@ extension FileManager {
     }
 
 
+    func url(for activity: Activity) -> URL {
+        let u = URL(fileURLWithPath: activity.fileName)
+        let f = documentDirectory!
+        return f.appendingPathComponent(u.lastPathComponent)
+    }
+
+
     func copyFileToSandbox(url: URL) throws -> URL {
         guard var destination = documentDirectory else {
             throw ReaderError.noAccessToDocumentFolder

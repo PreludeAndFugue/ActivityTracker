@@ -97,6 +97,23 @@ final class AppCoordinator: ObservableObject {
             break
         }
     }
+
+
+    var activityElevationData: [DistanceElevation] {
+        guard let activity = currentActivity else { return [] }
+        switch activity.fileType {
+        case .fit:
+            return FitReader.shared.elevation(for: activity)
+        case .gpx:
+            return GpxReader.shared.elevation(for: activity)
+        case .gz:
+            return []
+        case .tcx:
+            return []
+        case .none:
+            return []
+        }
+    }
 }
 
 
