@@ -63,7 +63,7 @@ class GpxReader: ObservableObject, ReaderAPI {
         for p in rest {
             let d = distanceDegrees(lat1: oldLat, lng1: oldLng, lat2: p.lat, lng2: p.lng)
             distance += d
-            elevationPoints.append((distance: d, elevation: p.elevation))
+            elevationPoints.append((distance: distance, elevation: p.elevation))
             oldLat = p.lat
             oldLng = p.lng
         }
