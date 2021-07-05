@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ElevationView: View {
     @EnvironmentObject var coordinator: AppCoordinator
+    var width: CGFloat
 
     var body: some View {
         DisclosureGroup("Elevation profile") {
-            ElevationPath(points: coordinator.activityElevationData)
+            ElevationPath(points: coordinator.activityElevationData, width: width)
                 .fill(linearGradient)
-                .frame(width: 1000, height: 150)
+                .frame(width: 0.95 * width, height: 150)
         }
         .padding(8)
         .background(Color("DisclosureBackground"))
@@ -41,6 +42,7 @@ private extension ElevationView {
 
 private struct ElevationPath: Shape {
     let points: [DistanceElevation]
+    let width: CGFloat
 
     func path(in rect: CGRect) -> Path {
         var p = Path()
@@ -53,7 +55,7 @@ private struct ElevationPath: Shape {
         p.closeSubpath()
         let b = p.boundingRect
 
-        let t = CGAffineTransform(scaleX: 950.0 / b.width, y: 120 / b.height)
+        let t = CGAffineTransform(scaleX: 0.95 * width / b.width, y: 120 / b.height)
             .translatedBy(x: 0, y: 30)
 
         return p.applying(t)
@@ -64,7 +66,7 @@ private struct ElevationPath: Shape {
 #if DEBUG
 struct ElevationView_Previews: PreviewProvider {
     static var previews: some View {
-        ElevationView()
+        ElevationView(width: 800)
     }
 }
 #endif

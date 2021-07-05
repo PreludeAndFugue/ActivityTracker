@@ -12,9 +12,11 @@ struct ActivityDetailView: View {
     @EnvironmentObject var appCoordinator: AppCoordinator
 
     var body: some View {
-        ActivityDetailMap(activity: appCoordinator.currentActivity)
-            .overlay(overlay, alignment: .topLeading)
-            .overlay(ElevationView(), alignment: .bottomLeading)
+        GeometryReader { proxy in
+            ActivityDetailMap(activity: appCoordinator.currentActivity)
+                .overlay(overlay, alignment: .topLeading)
+                .overlay(ElevationView(width: proxy.size.width), alignment: .bottomLeading)
+        }
     }
 }
 
