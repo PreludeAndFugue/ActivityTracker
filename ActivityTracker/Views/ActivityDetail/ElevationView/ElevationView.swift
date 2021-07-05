@@ -15,7 +15,7 @@ struct ElevationView: View {
         DisclosureGroup("Elevation profile") {
             ElevationPath(points: coordinator.activityElevationData, width: width)
                 .fill(linearGradient)
-                .frame(width: 0.95 * width, height: 150)
+                .frame(width: 0.95 * width, height: 120)
         }
         .padding(8)
         .background(Color("DisclosureBackground"))
@@ -45,19 +45,19 @@ private struct ElevationPath: Shape {
     let width: CGFloat
 
     func path(in rect: CGRect) -> Path {
+        let maxElevation = points.map({ $0.elevation }).max() ?? 0
+
         var p = Path()
-        p.move(to: CGPoint(x: 0, y: 120))
+        p.move(to: CGPoint(x: 0, y: maxElevation))
         for point in points {
-            p.addLine(to: CGPoint(x: point.distance, y: 120 - point.elevation))
+            p.addLine(to: CGPoint(x: point.distance, y: maxElevation - point.elevation))
         }
         let x = p.currentPoint!.x
-        p.addLine(to: CGPoint(x: x, y: 120))
+        p.addLine(to: CGPoint(x: x, y: CGFloat(maxElevation)))
         p.closeSubpath()
         let b = p.boundingRect
 
         let t = CGAffineTransform(scaleX: 0.95 * width / b.width, y: 120 / b.height)
-            .translatedBy(x: 0, y: 30)
-
         return p.applying(t)
     }
 }
