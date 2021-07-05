@@ -47,11 +47,10 @@ class FitReader: ObservableObject, ReaderAPI {
     func elevation(for activity: Activity) -> [DistanceElevation] {
         let f = FileManager.default.url(for: activity)
         let fit = FitFile(file: f)
-        let x = fit?
+        let data = fit?
             .messages(forMessageType: .record)
             .compactMap({ elevationDistance(for: $0) }) ?? []
-        print(x.count)
-        return x
+        return data.limitNumberOfElements()
     }
 }
 

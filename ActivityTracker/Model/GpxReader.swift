@@ -68,6 +68,7 @@ class GpxReader: ObservableObject, ReaderAPI {
             oldLng = p.lng
         }
         return elevationPoints
+            .limitNumberOfElements()
     }
 }
 
