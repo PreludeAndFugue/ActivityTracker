@@ -141,10 +141,10 @@
 		4E59DEF22686728F00A712F0 /* ActivityDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4EA3B2F42693C52800B97775 /* DetailDisclosure */,
 				4E65E3EA269114B600ABBCFB /* ElevationView */,
 				4E59DEFC26867FC300A712F0 /* Map */,
 				4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */,
-				4EA3B2F22693BEE100B97775 /* ActivityDetailDisclosure.swift */,
 			);
 			path = ActivityDetail;
 			sourceTree = "<group>";
@@ -248,6 +248,14 @@
 				4EA1D6172688F577004F7B83 /* DistanceTests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4EA3B2F42693C52800B97775 /* DetailDisclosure */ = {
+			isa = PBXGroup;
+			children = (
+				4EA3B2F22693BEE100B97775 /* ActivityDetailDisclosure.swift */,
+			);
+			path = DetailDisclosure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
