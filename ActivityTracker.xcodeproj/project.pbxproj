@@ -34,6 +34,7 @@
 		4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1D6042688E38E004F7B83 /* GpxReader.swift */; };
 		4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1D6062688EEC2004F7B83 /* Distance.swift */; };
 		4EA1D6182688F577004F7B83 /* DistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1D6172688F577004F7B83 /* DistanceTests.swift */; };
+		4EA3B2F32693BEE100B97775 /* ActivityDetailDisclosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA3B2F22693BEE100B97775 /* ActivityDetailDisclosure.swift */; };
 		4EDCC3F526939DAD00AF9A99 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDCC3F426939DAD00AF9A99 /* Array.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		4EA1D60C2688F55C004F7B83 /* ActivityTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActivityTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA1D6102688F55C004F7B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EA1D6172688F577004F7B83 /* DistanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceTests.swift; sourceTree = "<group>"; };
+		4EA3B2F22693BEE100B97775 /* ActivityDetailDisclosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailDisclosure.swift; sourceTree = "<group>"; };
 		4EDCC3F426939DAD00AF9A99 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				4E65E3EA269114B600ABBCFB /* ElevationView */,
 				4E59DEFC26867FC300A712F0 /* Map */,
 				4E6ED24A2682AC6F00C1180D /* ActivityDetailView.swift */,
+				4EA3B2F22693BEE100B97775 /* ActivityDetailDisclosure.swift */,
 			);
 			path = ActivityDetail;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,
+				4EA3B2F32693BEE100B97775 /* ActivityDetailDisclosure.swift in Sources */,
 				4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */,
 				4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */,
 				4E2D1AC9268E70D4003ADEB3 /* AppCoordinator.swift in Sources */,
