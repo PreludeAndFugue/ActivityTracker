@@ -24,8 +24,12 @@ struct ActivityDetailMap: NSViewRepresentable {
 
 
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard let annotation = annotation as? ActivityAnnotation else { return nil }
-            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "hello")
+            guard
+                let annotation = annotation as? ActivityAnnotation,
+                let view = mapView.dequeueReusableAnnotationView(withIdentifier: "hello") as? MKPinAnnotationView
+            else {
+                return nil
+            }
             switch annotation.type {
             case .start:
                 view.pinTintColor = .green
@@ -48,15 +52,18 @@ struct ActivityDetailMap: NSViewRepresentable {
     @EnvironmentObject var fitReader: FitReader
 
     var activity: Activity?
+    var mapType = MKMapType.standard
 
 
-    init(activity: Activity?) {
+    init(activity: Activity?, mapType: MKMapType) {
+        self.mapType = mapType
         self.activity = activity
     }
 
     
     func makeNSView(context: Context) -> MKMapView {
         let map = MKMapView()
+        map.mapType = mapType
         map.delegate = context.coordinator
         map.register(MKPinAnnotationView.self, forAnnotationViewWithReuseIdentifier: "hello")
         return map
@@ -65,6 +72,7 @@ struct ActivityDetailMap: NSViewRepresentable {
 
     func updateNSView(_ nsView: MKMapView, context: Context) {
         guard let activity = activity else { return }
+        nsView.mapType = mapType
         let coordinates = makeCoordinates(for: activity, context: context)
         nsView.removeOverlays(nsView.overlays)
         nsView.removeAnnotations(nsView.annotations)

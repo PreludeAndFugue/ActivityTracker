@@ -11,11 +11,14 @@ import SwiftUI
 struct ActivityDetailView: View {
     @EnvironmentObject var appCoordinator: AppCoordinator
 
+    @State var mapType = MKMapType.standard
+
     var body: some View {
         GeometryReader { proxy in
-            ActivityDetailMap(activity: appCoordinator.currentActivity)
+            ActivityDetailMap(activity: appCoordinator.currentActivity, mapType: mapType)
                 .overlay(disclosure, alignment: .topLeading)
                 .overlay(ElevationView(width: proxy.size.width), alignment: .bottomLeading)
+                .overlay(mapTypeButton, alignment: .topTrailing)
         }
     }
 }
@@ -26,6 +29,25 @@ struct ActivityDetailView: View {
 private extension ActivityDetailView {
     var disclosure: some View {
         ActivityDetailDisclosure(activity: appCoordinator.currentActivity)
+    }
+
+
+    var mapTypeButton: some View {
+        HStack {
+            Button(action: toggleMapType) {
+                Image(systemName: "map")
+            }
+        }
+        .padding(10)
+    }
+
+
+    func toggleMapType() {
+        if mapType == .standard {
+            mapType = .satellite
+        } else {
+            mapType = .standard
+        }
     }
 }
 
