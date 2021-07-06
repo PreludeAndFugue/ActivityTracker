@@ -22,6 +22,7 @@
 		4E59DEFE2686802F00A712F0 /* ActivityDetailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEFD2686802F00A712F0 /* ActivityDetailMap.swift */; };
 		4E59DF00268681E000A712F0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEFF268681E000A712F0 /* Database.swift */; };
 		4E65E3EC269114CC00ABBCFB /* ElevationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E65E3EB269114CC00ABBCFB /* ElevationView.swift */; };
+		4E6B0ACC2694FC4100552437 /* ActivityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B0ACB2694FC4100552437 /* ActivityAnnotation.swift */; };
 		4E6ED2362682A43400C1180D /* ActivityTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2352682A43400C1180D /* ActivityTrackerApp.swift */; };
 		4E6ED2382682A43400C1180D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED2372682A43400C1180D /* MainView.swift */; };
 		4E6ED23A2682A43400C1180D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED2392682A43400C1180D /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		4E59DEFD2686802F00A712F0 /* ActivityDetailMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailMap.swift; sourceTree = "<group>"; };
 		4E59DEFF268681E000A712F0 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		4E65E3EB269114CC00ABBCFB /* ElevationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevationView.swift; sourceTree = "<group>"; };
+		4E6B0ACB2694FC4100552437 /* ActivityAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityAnnotation.swift; sourceTree = "<group>"; };
 		4E6ED2322682A43400C1180D /* ActivityTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivityTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6ED2352682A43400C1180D /* ActivityTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTrackerApp.swift; sourceTree = "<group>"; };
 		4E6ED2372682A43400C1180D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4E59DEFD2686802F00A712F0 /* ActivityDetailMap.swift */,
+				4E6B0ACB2694FC4100552437 /* ActivityAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,
+				4E6B0ACC2694FC4100552437 /* ActivityAnnotation.swift in Sources */,
 				4EA3B2F32693BEE100B97775 /* ActivityDetailDisclosure.swift in Sources */,
 				4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */,
 				4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */,

@@ -11,11 +11,34 @@ import SwiftUI
 
 struct ActivityDetailMap: NSViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
+        var activityId: String? = nil
+        var coordinates: [CLLocationCoordinate2D]? = nil
+
+
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let r = MKPolylineRenderer(overlay: overlay)
             r.strokeColor = .red
             r.lineWidth = 3
             return r
+        }
+
+
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard let annotation = annotation as? ActivityAnnotation else { return nil }
+            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "hello")
+            switch annotation.type {
+            case .start:
+                view.pinTintColor = .green
+            case .end:
+                view.pinTintColor = .red
+            }
+            return view
+        }
+
+
+        func save(coordinates: [CLLocationCoordinate2D], for activity: Activity) {
+            self.coordinates = coordinates
+            self.activityId = activity.id
         }
     }
 
@@ -35,20 +58,23 @@ struct ActivityDetailMap: NSViewRepresentable {
     func makeNSView(context: Context) -> MKMapView {
         let map = MKMapView()
         map.delegate = context.coordinator
+        map.register(MKPinAnnotationView.self, forAnnotationViewWithReuseIdentifier: "hello")
         return map
     }
 
 
     func updateNSView(_ nsView: MKMapView, context: Context) {
         guard let activity = activity else { return }
-        let coordinates = makeCoordinates(for: activity)
+        let coordinates = makeCoordinates(for: activity, context: context)
         nsView.removeOverlays(nsView.overlays)
+        nsView.removeAnnotations(nsView.annotations)
+        addAnnotations(to: nsView, coordinates: coordinates)
         DispatchQueue.main.async {
             nsView.setRegion(self.makeRegion(coordinates), animated: true)
             nsView.addOverlay(self.makeOverlay(coordinates))
         }
         appCoordinator.zoomResetAction = {
-            let coordinates = self.makeCoordinates(for: self.activity)
+            let coordinates = self.makeCoordinates(for: self.activity, context: context)
             nsView.setRegion(self.makeRegion(coordinates), animated: true)
         }
     }
@@ -63,15 +89,22 @@ struct ActivityDetailMap: NSViewRepresentable {
 // MARK: - Private
 
 private extension ActivityDetailMap {
-    func makeCoordinates(for activity: Activity?) -> [CLLocationCoordinate2D] {
+    func makeCoordinates(for activity: Activity?, context: Context) -> [CLLocationCoordinate2D] {
+        if activity?.id == context.coordinator.activityId, let coordinates = context.coordinator.coordinates {
+            return coordinates
+        }
         guard let activity = activity else {
             return []
         }
         switch activity.fileType {
         case .fit:
-            return fitReader.coordinates(for: activity)
+            let coordinates = fitReader.coordinates(for: activity)
+            context.coordinator.save(coordinates: coordinates, for: activity)
+            return coordinates
         case .gpx:
-            return gpxReader.coordinates(for: activity)
+            let coordinates = gpxReader.coordinates(for: activity)
+            context.coordinator.save(coordinates: coordinates, for: activity)
+            return coordinates
         case .gz:
             return []
         case .tcx:
@@ -105,6 +138,18 @@ private extension ActivityDetailMap {
             longitudinalMeters: 1.1 * lngMetres
         )
         return region
+    }
+
+
+    func addAnnotations(to map: MKMapView, coordinates: [CLLocationCoordinate2D]) {
+        if let first = coordinates.first {
+            let start = ActivityAnnotation(coordinate: first, type: .start)
+            map.addAnnotation(start)
+        }
+        if let last = coordinates.last {
+            let end = ActivityAnnotation(coordinate: last, type: .end)
+            map.addAnnotation(end)
+        }
     }
 
 
