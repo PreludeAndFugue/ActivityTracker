@@ -10,39 +10,32 @@ import MapKit
 import SwiftUI
 
 struct ActivityDetailMap: NSViewRepresentable {
-    class Coordinator: NSObject, MKMapViewDelegate {
-        var activityId: String? = nil
+    class Coordinator: NSObject {
+        var activity: Activity? = nil
         var coordinates: [CLLocationCoordinate2D]? = nil
 
 
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            let r = MKPolylineRenderer(overlay: overlay)
-            r.strokeColor = .red
-            r.lineWidth = 3
-            return r
+        func update(activity: Activity) -> [CLLocationCoordinate2D]? {
+            if activity == self.activity { return nil }
+            self.activity = activity
+            self.coordinates = makeCoordinates(for: activity)
+            return coordinates
         }
 
 
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard
-                let annotation = annotation as? ActivityAnnotation,
-                let view = mapView.dequeueReusableAnnotationView(withIdentifier: "hello") as? MKPinAnnotationView
-            else {
-                return nil
+        private func makeCoordinates(for activity: Activity) -> [CLLocationCoordinate2D] {
+            switch activity.fileType {
+            case .fit:
+                return FitReader.shared.coordinates(for: activity)
+            case .gpx:
+                return GpxReader.shared.coordinates(for: activity)
+            case .gz:
+                return []
+            case .tcx:
+                return []
+            case .none:
+                return []
             }
-            switch annotation.type {
-            case .start:
-                view.pinTintColor = .green
-            case .end:
-                view.pinTintColor = .red
-            }
-            return view
-        }
-
-
-        func save(coordinates: [CLLocationCoordinate2D], for activity: Activity) {
-            self.coordinates = coordinates
-            self.activityId = activity.id
         }
     }
 
@@ -73,17 +66,19 @@ struct ActivityDetailMap: NSViewRepresentable {
     func updateNSView(_ nsView: MKMapView, context: Context) {
         guard let activity = activity else { return }
         nsView.mapType = mapType
-        let coordinates = makeCoordinates(for: activity, context: context)
+        guard let coordinates = context.coordinator.update(activity: activity) else {
+            return
+        }
         nsView.removeOverlays(nsView.overlays)
         nsView.removeAnnotations(nsView.annotations)
         addAnnotations(to: nsView, coordinates: coordinates)
+        let region = makeRegion(coordinates)
         DispatchQueue.main.async {
-            nsView.setRegion(self.makeRegion(coordinates), animated: true)
+            nsView.setRegion(region, animated: true)
             nsView.addOverlay(self.makeOverlay(coordinates))
         }
         appCoordinator.zoomResetAction = {
-            let coordinates = self.makeCoordinates(for: self.activity, context: context)
-            nsView.setRegion(self.makeRegion(coordinates), animated: true)
+            nsView.setRegion(region, animated: true)
         }
     }
 
@@ -94,35 +89,38 @@ struct ActivityDetailMap: NSViewRepresentable {
 }
 
 
-// MARK: - Private
+// MARK: - MKMapViewDelegate
 
-private extension ActivityDetailMap {
-    func makeCoordinates(for activity: Activity?, context: Context) -> [CLLocationCoordinate2D] {
-        if activity?.id == context.coordinator.activityId, let coordinates = context.coordinator.coordinates {
-            return coordinates
-        }
-        guard let activity = activity else {
-            return []
-        }
-        switch activity.fileType {
-        case .fit:
-            let coordinates = fitReader.coordinates(for: activity)
-            context.coordinator.save(coordinates: coordinates, for: activity)
-            return coordinates
-        case .gpx:
-            let coordinates = gpxReader.coordinates(for: activity)
-            context.coordinator.save(coordinates: coordinates, for: activity)
-            return coordinates
-        case .gz:
-            return []
-        case .tcx:
-            return []
-        case .none:
-            return []
-        }
+extension ActivityDetailMap.Coordinator: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let r = MKPolylineRenderer(overlay: overlay)
+        r.strokeColor = .red
+        r.lineWidth = 3
+        return r
     }
 
 
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard
+            let annotation = annotation as? ActivityAnnotation,
+            let view = mapView.dequeueReusableAnnotationView(withIdentifier: "hello") as? MKPinAnnotationView
+        else {
+            return nil
+        }
+        switch annotation.type {
+        case .start:
+            view.pinTintColor = .green
+        case .end:
+            view.pinTintColor = .red
+        }
+        return view
+    }
+}
+
+
+// MARK: - Private
+
+private extension ActivityDetailMap {
     func makeRegion(_ coordinates: [CLLocationCoordinate2D]) -> MKCoordinateRegion {
         let minLat = coordinates.map({ $0.latitude }).min() ?? 50
         let maxLat = coordinates.map({ $0.latitude }).max() ?? 51
