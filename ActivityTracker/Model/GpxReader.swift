@@ -31,7 +31,7 @@ class GpxReader: ObservableObject, ReaderAPI {
             id: UUID().uuidString,
             type: .bike,
             gear: "Chromium",
-            title: gpx.metadata?.name ?? "Unknown",
+            title: track.name ?? gpx.metadata?.name ?? "Unknown",
             date: gpx.metadata?.time ?? Date(),
             elapsedTime: getElapsedTime(points: points),
             distance: length(of: points),
