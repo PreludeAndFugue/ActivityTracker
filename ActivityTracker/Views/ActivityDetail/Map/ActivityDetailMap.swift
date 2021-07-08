@@ -20,7 +20,7 @@ struct ActivityDetailMap: NSViewRepresentable {
             self.activity = activity
             self.coordinates = makeCoordinates(for: activity)
             return coordinates
-        }
+        }   
 
 
         private func makeCoordinates(for activity: Activity) -> [CLLocationCoordinate2D] {

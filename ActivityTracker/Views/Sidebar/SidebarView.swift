@@ -28,16 +28,33 @@ struct SidebarView: View {
         VStack {
             List(selection: $coordinator.sidebarSelection) {
                 Section(header: Text("Activities")) {
-                    Text("All activities")
-                        .tag(SidebarView.Selection.allActivities)
-                    Text("Bike")
-                        .tag(SidebarView.Selection.bike)
-                    Text("Run")
-                        .tag(SidebarView.Selection.run)
+                    HStack {
+                        Text("All activities")
+                        Spacer()
+                        BadgeView(number: coordinator.activityCount.all)
+                    }
+                    .tag(SidebarView.Selection.allActivities)
+
+                    HStack {
+                        Text("Bike")
+                        Spacer()
+                        BadgeView(number: coordinator.activityCount.bike)
+                    }
+                    .tag(SidebarView.Selection.bike)
+
+                    HStack {
+                        Text("Run")
+                        Spacer()
+                        BadgeView(number: coordinator.activityCount.run)
+                    }
+                    .tag(SidebarView.Selection.run)
+
                     Text("Walk")
                         .tag(SidebarView.Selection.walk)
+
                     Text("This week")
                         .tag(SidebarView.Selection.activitiesWeek)
+
                     Text("This month")
                         .tag(SidebarView.Selection.activitiesMonth)
                 }
@@ -54,7 +71,7 @@ struct SidebarView: View {
             coordinator.sidebar()
         })
         .listStyle(SidebarListStyle())
-        .frame(idealWidth: 200)
+        .frame(idealWidth: 230)
     }
 }
 
@@ -67,6 +84,19 @@ extension SidebarView.Selection {
         case .statsWeek, .statsMonth:
             return false
         }
+    }
+}
+
+
+private struct BadgeView: View {
+    let number: Int
+
+    var body: some View {
+        Text("\(number)")
+            .font(.caption2)
+            .padding([.leading, .trailing], 3)
+            .background(Color.gray.opacity(0.5))
+            .clipShape(Capsule())
     }
 }
 

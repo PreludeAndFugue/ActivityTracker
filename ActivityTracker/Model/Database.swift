@@ -14,6 +14,14 @@ final class Database {
         case noAccessToDocumentFolder
     }
 
+
+    struct ActivityCount {
+        static let zero = ActivityCount(all: 0, bike: 0, run: 0)
+        let all: Int
+        let bike: Int
+        let run: Int
+    }
+
     private static let fileName = "ActivityTracker.sqlite"
 
     private let queue: DatabaseQueue
@@ -51,6 +59,17 @@ final class Database {
             for activity in activities {
                 try activity.insert(db)
             }
+        }
+    }
+
+
+    func activityCount() -> ActivityCount {
+        return try! queue.read() { db in
+            ActivityCount(
+                all: try Activity.fetchCount(db),
+                bike: try Activity.all().filter(type: .bike).fetchCount(db),
+                run: try Activity.all().filter(type: .run).fetchCount(db)
+            )
         }
     }
 }
