@@ -16,6 +16,7 @@ final class AppCoordinator: ObservableObject {
 
     @Published var currentActivities: [Activity] = []
     @Published var currentActivity: Activity? = nil
+    @Published var activityCount: Database.ActivityCount = .zero
     @Published var sidebarSelection: SidebarView.Selection? = .allActivities
     @Published var isError = false
     @Published var isImporting = false
@@ -41,8 +42,7 @@ final class AppCoordinator: ObservableObject {
 
     init(db: Database) {
         self.db = db
-        currentActivities = db.get(for: nil)
-        currentActivity = currentActivities.first
+        refreshActivities(for: nil)
     }
 
 
@@ -74,17 +74,13 @@ final class AppCoordinator: ObservableObject {
     func sidebar() {
         switch sidebarSelection {
         case .allActivities:
-            currentActivities = db.get(for: nil)
-            currentActivity = currentActivities.first
+            refreshActivities(for: nil)
         case .bike:
-            currentActivities = db.get(for: .bike)
-            currentActivity = currentActivities.first
+            refreshActivities(for: .bike)
         case .run:
-            currentActivities = db.get(for: .run)
-            currentActivity = currentActivities.first
+            refreshActivities(for: .run)
         case .walk:
-            currentActivities = db.get(for: .walk)
-            currentActivity = currentActivities.first
+            refreshActivities(for: .walk)
         case .activitiesWeek:
             break
         case .activitiesMonth:
@@ -164,5 +160,12 @@ private extension AppCoordinator {
             self.error = error
             isError = true
         }
+    }
+
+
+    func refreshActivities(for activityType: Activity.ActivityType?) {
+        currentActivities = db.get(for: activityType)
+        currentActivity = currentActivities.first
+        activityCount = db.activityCount()
     }
 }

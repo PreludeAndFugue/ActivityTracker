@@ -88,19 +88,6 @@ extension SidebarView.Selection {
 }
 
 
-private struct BadgeView: View {
-    let number: Int
-
-    var body: some View {
-        Text("\(number)")
-            .font(.caption2)
-            .padding([.leading, .trailing], 3)
-            .background(Color.gray.opacity(0.5))
-            .clipShape(Capsule())
-    }
-}
-
-
 #if DEBUG
 struct SidebarView_Previews: PreviewProvider {
     static var previews: some View {
