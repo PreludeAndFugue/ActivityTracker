@@ -13,16 +13,15 @@ struct StatisticsView: View {
 
     var body: some View {
         VStack {
+            HStack {
+                Text("Bike")
+                Text(model.bikeDistanceString)
+                Text(model.bikeElapsedTimeString)
+            }
             GeometryReader { proxy in
-                HStack {
-                    Text("Bike")
-                    Text(model.bikeDistanceString)
-                    Text(model.bikeElapsedTimeString)
-                }
-                BarChartView(heights: model.bikeDayDistances, size: proxy.size)
+                BarChartView(heights: [20, 0, 30, 40, 50, 10, 100], size: proxy.size)
             }
         }
-        .frame(width: 500, height: 300)
     }
 }
 
@@ -30,8 +29,15 @@ struct StatisticsView: View {
 #if DEBUG
 struct StatisticsView_Previews: PreviewProvider {
     private static let db = Database.init(dummy: true)
+    private static let model = StatisticsViewModel(db: db)
+
     static var previews: some View {
-        StatisticsView(model: .init(db: db))
+        Group {
+            StatisticsView(model: model)
+
+            StatisticsView(model: model)
+                .frame(width: 300, height: 100)
+        }
     }
 }
 #endif

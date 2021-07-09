@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+private let horizontalPadding: CGFloat = 10
+private let textVerticalSpace: CGFloat = 20
+
 struct BarChartView: View {
     let heights: [Double]
     let size: CGSize
@@ -15,24 +18,39 @@ struct BarChartView: View {
         VStack {
             Chart(heights: heights, size: size)
                 .foregroundColor(.purple)
+                .border(Color.gray)
+                .padding([.leading, .trailing], horizontalPadding)
                 .border(Color.green)
-            HStack(spacing: 5) {
+            HStack(spacing: horizontalPadding / 2) {
                 Text("M")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("T")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("W")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("T")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("F")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("S")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
+
                 Text("S")
                     .frame(maxWidth: .infinity)
+                    .border(Color.yellow)
             }
-            .border(Color.pink)
+            .border(Color.blue)
         }
     }
 }
@@ -52,7 +70,10 @@ private struct Chart: Shape {
             }
         }
         let b = path.boundingRect
-        let t = CGAffineTransform(scaleX: size.width / b.width, y: (size.height - 30) / b.height)
+        let t = CGAffineTransform(
+            scaleX: (size.width - 2 * horizontalPadding) / b.width,
+            y: (size.height - textVerticalSpace) / b.height
+        )
         return path.applying(t)
     }
 }
