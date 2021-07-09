@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct StatisticsView: View {
+    @StateObject var model: StatisticsViewModel
+
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            GeometryReader { proxy in
+                HStack {
+                    Text("Bike")
+                    Text(model.bikeDistanceString)
+                    Text(model.bikeElapsedTimeString)
+                }
+                BarChartView(heights: model.bikeDayDistances, size: proxy.size)
+            }
+        }
+        .frame(width: 500, height: 300)
     }
 }
 
+
+#if DEBUG
 struct StatisticsView_Previews: PreviewProvider {
+    private static let db = Database.init(dummy: true)
     static var previews: some View {
-        StatisticsView()
+        StatisticsView(model: .init(db: db))
     }
 }
+#endif

@@ -42,6 +42,8 @@
 		4EE308582698CF810019BEEA /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308572698CF810019BEEA /* StatisticsView.swift */; };
 		4EE3085A2698CF8D0019BEEA /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308592698CF8D0019BEEA /* StatisticsViewModel.swift */; };
 		4EE3085C2698CFBA0019BEEA /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE3085B2698CFBA0019BEEA /* BadgeView.swift */; };
+		4EE3085E2698D3E40019BEEA /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE3085D2698D3E40019BEEA /* Statistics.swift */; };
+		4EE308612698F1600019BEEA /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE308602698F1600019BEEA /* BarChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		4EE308572698CF810019BEEA /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		4EE308592698CF8D0019BEEA /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		4EE3085B2698CFBA0019BEEA /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		4EE3085D2698D3E40019BEEA /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		4EE308602698F1600019BEEA /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 				4EA1D6042688E38E004F7B83 /* GpxReader.swift */,
 				4E2F184F2690960D00E218BF /* ReaderAPI.swift */,
 				4E2F185426909F3E00E218BF /* StravaReader.swift */,
+				4EE3085D2698D3E40019BEEA /* Statistics.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,10 +291,19 @@
 		4EE308562698CF690019BEEA /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				4EE3085F2698F14F0019BEEA /* BarChart */,
 				4EE308572698CF810019BEEA /* StatisticsView.swift */,
 				4EE308592698CF8D0019BEEA /* StatisticsViewModel.swift */,
 			);
 			path = Statistics;
+			sourceTree = "<group>";
+		};
+		4EE3085F2698F14F0019BEEA /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				4EE308602698F1600019BEEA /* BarChartView.swift */,
+			);
+			path = BarChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,6 +430,8 @@
 				4E6B0ACC2694FC4100552437 /* ActivityAnnotation.swift in Sources */,
 				4EA3B2F32693BEE100B97775 /* ActivityDetailDisclosure.swift in Sources */,
 				4EA1D6072688EEC2004F7B83 /* Distance.swift in Sources */,
+				4EE3085E2698D3E40019BEEA /* Statistics.swift in Sources */,
+				4EE308612698F1600019BEEA /* BarChartView.swift in Sources */,
 				4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */,
 				4E2D1AC9268E70D4003ADEB3 /* AppCoordinator.swift in Sources */,
 				4EE308512698CDEC0019BEEA /* Calendar.swift in Sources */,

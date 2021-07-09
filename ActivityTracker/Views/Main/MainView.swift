@@ -18,7 +18,7 @@ struct MainView: View {
                 ActivityDetailView()
             } else {
                 SidebarView()
-                Text("Statistics")
+                StatisticsView(model: StatisticsViewModel(db: appCoordinator.db))
             }
         }
     }

@@ -91,7 +91,7 @@ private var dateFormatter: DateFormatter = {
     return df
 }()
 
-private var elapsedTimeFormatter: DateComponentsFormatter = {
+var elapsedTimeFormatter: DateComponentsFormatter = {
     var df = DateComponentsFormatter()
     df.allowedUnits = [.hour, .minute, .second]
     df.maximumUnitCount = 2
@@ -99,7 +99,7 @@ private var elapsedTimeFormatter: DateComponentsFormatter = {
     return df
 }()
 
-private var distanceFormatter: MeasurementFormatter = {
+var distanceFormatter: MeasurementFormatter = {
     var nf = NumberFormatter()
     nf.numberStyle = .decimal
     nf.maximumFractionDigits = 2

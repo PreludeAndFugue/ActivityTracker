@@ -21,7 +21,7 @@ final class AppCoordinator: ObservableObject {
     @Published var isError = false
     @Published var isImporting = false
 
-    private let db: Database
+    let db: Database
 
     var zoomResetAction: ZoomResetAction?
 

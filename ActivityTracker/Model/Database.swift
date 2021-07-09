@@ -47,6 +47,25 @@ final class Database {
     }
 
 
+    func get(for dateInterval: DateInterval) -> [Activity] {
+        return try! queue.read() { db in
+            try Activity.all()
+                .filter(Activity.Columns.date >= dateInterval.start && Activity.Columns.date < dateInterval.end)
+                .fetchAll(db)
+        }
+    }
+
+
+    func stats(for dateInterval: DateInterval) -> Statistics {
+        return try! queue.read() { db in
+            let activities = try Activity.all()
+                .filter(Activity.Columns.date >= dateInterval.start && Activity.Columns.date < dateInterval.end)
+                .fetchAll(db)
+            return Statistics(dateInterval: dateInterval, activities: activities)
+        }
+    }
+
+
     func create(_ activity: Activity) {
         try! queue.write() { db in
             try activity.insert(db)
