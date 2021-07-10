@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct YearStatsView: View {
+    let model: StatisticsViewModel
+
     var body: some View {
-        VStack {
-            Text("annual stats")
+        VStack(spacing: 10) {
+            DistanceProgressView(
+                distance: model.bikeYearDistance,
+                totalDistance: model.bikeTotalYearDistance
+            )
         }
     }
 }
 
+
+#if DEBUG
 struct YearStatsView_Previews: PreviewProvider {
+    static let db = Database.dummy
+    static let model = StatisticsViewModel(db: db)
     static var previews: some View {
-        YearStatsView()
+        YearStatsView(model: model)
     }
 }
+#endif

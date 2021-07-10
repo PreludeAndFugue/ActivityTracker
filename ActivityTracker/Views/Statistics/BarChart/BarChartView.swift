@@ -23,9 +23,8 @@ struct BarChartView: View {
     var body: some View {
         VStack {
             Chart(heights: data.values, size: size)
-                .foregroundColor(.purple)
+                .foregroundColor(.accentColor)
                 .border(Color.gray)
-//                .padding([.leading, .trailing], horizontalPadding)
                 .border(Color.green)
             HStack(spacing: 0) {
                 ForEach(data.labels, id: \.hashValue) { label in

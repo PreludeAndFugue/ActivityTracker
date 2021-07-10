@@ -21,6 +21,7 @@
 		4E4915EA2699F06400F51095 /* MonthStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915E92699F06400F51095 /* MonthStatsView.swift */; };
 		4E4915EC2699F06E00F51095 /* YearStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915EB2699F06E00F51095 /* YearStatsView.swift */; };
 		4E4915EE2699F1F000F51095 /* WeekNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915ED2699F1F000F51095 /* WeekNavigatorView.swift */; };
+		4E4915F02699F89800F51095 /* DistanceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915EF2699F89800F51095 /* DistanceProgressView.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
 		4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF8268673D100A712F0 /* Activity+Debug.swift */; };
@@ -73,6 +74,7 @@
 		4E4915E92699F06400F51095 /* MonthStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStatsView.swift; sourceTree = "<group>"; };
 		4E4915EB2699F06E00F51095 /* YearStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearStatsView.swift; sourceTree = "<group>"; };
 		4E4915ED2699F1F000F51095 /* WeekNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekNavigatorView.swift; sourceTree = "<group>"; };
+		4E4915EF2699F89800F51095 /* DistanceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceProgressView.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4E59DEF8268673D100A712F0 /* Activity+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Debug.swift"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				4E4915E72699EFD400F51095 /* WeekStatsView.swift */,
 				4E4915E92699F06400F51095 /* MonthStatsView.swift */,
 				4E4915EB2699F06E00F51095 /* YearStatsView.swift */,
+				4E4915EF2699F89800F51095 /* DistanceProgressView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				4EE308582698CF810019BEEA /* StatisticsView.swift in Sources */,
 				4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */,
 				4E59DEFE2686802F00A712F0 /* ActivityDetailMap.swift in Sources */,
+				4E4915F02699F89800F51095 /* DistanceProgressView.swift in Sources */,
 				4E2F18502690960D00E218BF /* ReaderAPI.swift in Sources */,
 				4E6ED2362682A43400C1180D /* ActivityTrackerApp.swift in Sources */,
 				4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */,

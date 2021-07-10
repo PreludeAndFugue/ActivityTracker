@@ -80,7 +80,7 @@ private extension Statistics {
         case .month:
             return month.activities.filter({ $0.type == .bike})
         case .year:
-            return month.activities.filter({ $0.type == .bike })
+            return year.activities.filter({ $0.type == .bike })
         }
     }
 

@@ -25,7 +25,7 @@ struct StatisticsView: View {
                     .padding([.top, .bottom], 10)
                     .frame(height: 0.3 * proxy.size.height)
 
-                YearStatsView()
+                YearStatsView(model: model)
                     .padding([.top, .bottom], 10)
                     .frame(height: 0.3 * proxy.size.height)
             }

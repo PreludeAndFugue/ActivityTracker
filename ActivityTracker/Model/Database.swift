@@ -156,6 +156,25 @@ extension Database {
         try! self.init(inMemory: true)
     }
 
-    static let dummy = Database(dummy: true)
+    static var dummy: Database = {
+        let db = Database(dummy: true)
+        let date = Date()
+        let activities: [Activity] = (-15...15).enumerated().compactMap({
+            guard [true, true, true, false].randomElement()! else { return nil }
+            return Activity(
+                id: UUID().uuidString,
+                type: .bike,
+                gear: "CHR",
+                title: "Afternoon ride",
+                date: Calendar.current.date(byAdding: .day, value: $0.element, to: date)!,
+                elapsedTime: [2800, 3000, 3500, 3987, 4343].randomElement()!,
+                distance: [5_123, 15_873, 32_343, 50_334, 90_343].randomElement()!,
+                fileName: "",
+                fileType: .gpx
+            )
+        })
+        db.create(activities)
+        return db
+    }()
 }
 #endif

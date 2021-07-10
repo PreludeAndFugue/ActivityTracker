@@ -21,6 +21,26 @@ final class StatisticsViewModel: ObservableObject {
     }
 
 
+    var bikeWeekDistance: Double {
+        stats.bikeDistance(for: .week)
+    }
+
+
+    var bikeTotalWeekDistance: Double {
+        stats.weeklyGoal
+    }
+
+
+    var bikeYearDistance: Double {
+        stats.bikeDistance(for: .year)
+    }
+
+
+    var bikeTotalYearDistance: Double {
+        stats.annualGoal
+    }
+
+
     var bikeDistanceString: String {
         let m = Measurement(value: stats.bikeDistance(for: .week), unit: UnitLength.meters)
         return distanceFormatter.string(from: m.converted(to: .kilometers))

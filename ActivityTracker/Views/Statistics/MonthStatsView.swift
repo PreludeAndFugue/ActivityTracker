@@ -21,7 +21,7 @@ struct MonthStatsView: View {
 
 #if DEBUG
 struct MonthStatsView_Previews: PreviewProvider {
-    private static let db = try! Database(inMemory: true)
+    private static let db = Database.dummy
     private static let model = StatisticsViewModel(db: db)
     static var previews: some View {
         MonthStatsView(model: model)
