@@ -21,7 +21,8 @@ struct WeekNavigatorView: View {
             Text(dateString)
                 .font(.system(size: 25))
         }
-        .frame(alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .border(Color.green)
     }
 }
 

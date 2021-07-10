@@ -30,6 +30,7 @@ struct StatisticsView: View {
                     .frame(height: 0.3 * proxy.size.height)
             }
             .padding([.leading, .trailing], 10)
+            .border(Color.blue)
         }
     }
 }
