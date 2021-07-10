@@ -11,46 +11,52 @@ private let horizontalPadding: CGFloat = 10
 private let textVerticalSpace: CGFloat = 20
 
 struct BarChartView: View {
-    let heights: [Double]
+    enum DataPoints {
+        case week([Double])
+        case month([Double])
+    }
+
+
+    let data: DataPoints
     let size: CGSize
 
     var body: some View {
         VStack {
-            Chart(heights: heights, size: size)
+            Chart(heights: data.values, size: size)
                 .foregroundColor(.purple)
                 .border(Color.gray)
                 .padding([.leading, .trailing], horizontalPadding)
                 .border(Color.green)
-            HStack(spacing: horizontalPadding / 2) {
-                Text("M")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("T")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("W")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("T")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("F")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("S")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
-
-                Text("S")
-                    .frame(maxWidth: .infinity)
-                    .border(Color.yellow)
+            HStack(spacing: 0) {
+                ForEach(data.labels, id: \.hashValue) { label in
+                    Text(label)
+                        .frame(maxWidth: .infinity)
+                        .border(Color.yellow)
+                }
             }
             .border(Color.blue)
+        }
+        .frame(width: size.width, height: size.height)
+    }
+}
+
+
+private extension BarChartView.DataPoints {
+    var values: [Double] {
+        switch self {
+        case .month(let values):
+            return values
+        case .week(let values):
+            return values
+        }
+    }
+
+    var labels: [String] {
+        switch self {
+        case .month(let values):
+            return values.enumerated().map({ "\($0.offset)" })
+        case .week:
+            return ["M", "T", "W", "T", "F", "S", "S"]
         }
     }
 }
@@ -81,10 +87,11 @@ private struct Chart: Shape {
 
 #if DEBUG
 struct BarChartView_Previews: PreviewProvider {
+    private static let data: BarChartView.DataPoints = .week([30, 60, 30, 0, 0, 114, 20.4])
     static var previews: some View {
-        BarChartView(heights: [30, 60, 30, 0, 0, 114, 20.4], size: CGSize(width: 300, height: 100))
+        BarChartView(data: data, size: CGSize(width: 300, height: 100))
             .frame(width: 300, height: 100)
-        BarChartView(heights: [30, 60, 30, 0, 0, 114, 20.4], size: CGSize(width: 100, height: 100))
+        BarChartView(data: data, size: CGSize(width: 100, height: 100))
             .frame(width: 100, height: 100)
     }
 }

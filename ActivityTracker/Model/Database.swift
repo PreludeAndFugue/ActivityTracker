@@ -56,12 +56,28 @@ final class Database {
     }
 
 
-    func stats(for dateInterval: DateInterval) -> Statistics {
+    func stats(for date: Date) -> Statistics {
+        let weekInterval = Calendar.current.weekInterval(containing: date)
+        let monthInterval = Calendar.current.monthInterval(containing: date)
+        let yearInterval = Calendar.current.yearInterval(containing: date)
         return try! queue.read() { db in
-            let activities = try Activity.all()
-                .filter(Activity.Columns.date >= dateInterval.start && Activity.Columns.date < dateInterval.end)
+            let weekActivities = try Activity.all()
+                .filter(Activity.Columns.date >= weekInterval.start && Activity.Columns.date < weekInterval.end)
                 .fetchAll(db)
-            return Statistics(dateInterval: dateInterval, activities: activities)
+            let week = Statistics.IntervalActivities(dateInterval: weekInterval, activities: weekActivities)
+
+            let monthActivities = try Activity.all()
+                .filter(Activity.Columns.date >= monthInterval.start && Activity.Columns.date < monthInterval.end)
+                .fetchAll(db)
+            let month = Statistics.IntervalActivities(dateInterval: monthInterval, activities: monthActivities)
+
+
+            let yearActivities = try Activity.all()
+                .filter(Activity.Columns.date >= yearInterval.start && Activity.Columns.date < yearInterval.end)
+                .fetchAll(db)
+            let year = Statistics.IntervalActivities(dateInterval: yearInterval, activities: yearActivities)
+
+            return Statistics(week: week, month: month, year: year)
         }
     }
 

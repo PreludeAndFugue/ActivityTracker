@@ -8,41 +8,91 @@
 import Foundation
 
 struct Statistics {
-    private let calendar = Calendar.current
-    private let dateInterval: DateInterval
-    private let activities: [Activity]
+    enum Interval {
+        case week
+        case month
+        case year
+    }
 
-
-    init(dateInterval: DateInterval, activities: [Activity]) {
-        self.dateInterval = dateInterval
-        self.activities = activities
+    struct IntervalActivities {
+        let dateInterval: DateInterval
+        let activities: [Activity]
     }
 
 
-    var bikeDistance: Double {
-        activities.filter({ $0.type == .bike })
+    private let calendar = Calendar.current
+    private let week: IntervalActivities
+    private let month: IntervalActivities
+    private let year: IntervalActivities
+
+    let weeklyGoal = 150_000.0
+    let annualGoal = 7_500_000.0
+
+
+    init(week: IntervalActivities, month: IntervalActivities, year: IntervalActivities) {
+        self.week = week
+        self.month = month
+        self.year = year
+    }
+
+
+    func bikeDistance(for interval: Interval) -> Double {
+        bikeActivities(for: interval)
             .map({ $0.distance })
             .reduce(0, +)
     }
 
 
-    var bikeTime: TimeInterval {
-        activities.filter({ $0.type == .bike })
+    func bikeTime(for interval: Interval) -> TimeInterval {
+        bikeActivities(for: interval)
             .map({ $0.elapsedTime })
             .reduce(0, +)
     }
 
 
-    var bikeDayDistances: [Double] {
+    func bikeDayDistances(for interval: Interval) -> [Double] {
         var dict: [Date: Double] = [:]
-        for activity in activities {
+        for activity in bikeActivities(for: interval) {
             let date = calendar.startOfDay(for: activity.date)
             dict[date] = dict[date, default: 0] + activity.distance
         }
         var distances: [Double] = []
-        for date in calendar.dates(in: dateInterval) {
+        for date in calendar.dates(in: dateInterval(for: interval)) {
             distances.append(dict[date, default: 2])
         }
         return distances
+    }
+
+
+    func bikeElevationGain(for interval: Interval) -> Double {
+        return 0
+    }
+}
+
+
+// MARK: - Private
+
+private extension Statistics {
+    func bikeActivities(for interval: Interval) -> [Activity] {
+        switch interval {
+        case .week:
+            return week.activities.filter({ $0.type == .bike })
+        case .month:
+            return month.activities.filter({ $0.type == .bike})
+        case .year:
+            return month.activities.filter({ $0.type == .bike })
+        }
+    }
+
+
+    func dateInterval(for interval: Interval) -> DateInterval {
+        switch interval {
+        case .week:
+            return week.dateInterval
+        case .month:
+            return month.dateInterval
+        case .year:
+            return year.dateInterval
+        }
     }
 }

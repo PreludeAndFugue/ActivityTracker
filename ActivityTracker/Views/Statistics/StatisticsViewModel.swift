@@ -17,22 +17,49 @@ final class StatisticsViewModel: ObservableObject {
 
     init(db: Database) {
         self.db = db
-        self.stats = db.stats(for: calendar.weekInterval(containing: Date()))
+        self.stats = db.stats(for: Date())
     }
 
 
     var bikeDistanceString: String {
-        let m = Measurement(value: stats.bikeDistance, unit: UnitLength.meters)
+        let m = Measurement(value: stats.bikeDistance(for: .week), unit: UnitLength.meters)
+        return distanceFormatter.string(from: m.converted(to: .kilometers))
+    }
+
+    
+    var bikeWeekString: String {
+        let m = Measurement(value: stats.weeklyGoal, unit: UnitLength.meters)
         return distanceFormatter.string(from: m.converted(to: .kilometers))
     }
 
 
     var bikeElapsedTimeString: String {
-        elapsedTimeFormatter.string(from: stats.bikeTime) ?? "00:00"
+        elapsedTimeFormatter.string(from: stats.bikeTime(for: .week)) ?? "00:00"
     }
 
 
-    var bikeDayDistances: [Double] {
-        stats.bikeDayDistances
+    var bikeWeekPercentage: CGFloat {
+        CGFloat(stats.bikeDistance(for: .week) / stats.weeklyGoal)
+    }
+
+
+    var bikeWeekPercentageString: String {
+        let d = Double(bikeWeekPercentage)
+        return percentageFormatter.string(from: NSNumber(value: d)) ?? "0 %"
+    }
+
+
+    var elevationGainString: String {
+        return "600m"
+    }
+
+
+    var bikeWeekDistances: [Double] {
+        stats.bikeDayDistances(for: .week)
+    }
+
+
+    var bikeMonthDistances: [Double] {
+        stats.bikeDayDistances(for: .month)
     }
 }
