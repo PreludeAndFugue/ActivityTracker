@@ -12,11 +12,24 @@ struct YearStatsView: View {
 
     var body: some View {
         VStack(spacing: 10) {
+            Text(year)
+                .font(.system(size: 20))
+            
             DistanceProgressView(
                 distance: model.bikeYearDistance,
                 totalDistance: model.bikeTotalYearDistance
             )
         }
+    }
+}
+
+
+// MARK: - Private
+
+private extension YearStatsView {
+    var year: String {
+        let year = Calendar.current.dateComponents([.year], from: model.date).year ?? 2000
+        return "\(year)"
     }
 }
 

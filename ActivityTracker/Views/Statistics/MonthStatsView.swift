@@ -12,9 +12,20 @@ struct MonthStatsView: View {
 
     var body: some View {
         VStack {
-            Text("Monthly stats")
+            Text(month)
+                .font(.system(size: 20))
             BarChartView(data: .month(model.bikeMonthDistances), size: CGSize(width: 750, height: 200))
         }
+    }
+}
+
+
+// MARK: - Private
+
+private extension MonthStatsView {
+    var month: String {
+        let month = Calendar.current.dateComponents([.month], from: model.date).month ?? 0
+        return Calendar.current.monthSymbols[month - 1]
     }
 }
 

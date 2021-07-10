@@ -11,7 +11,8 @@ import Foundation
 final class StatisticsViewModel: ObservableObject {
     private let calendar = Calendar.current
     private let db: Database
-    private var date = Date()
+
+    var date = Date()
 
     @Published var stats: Statistics
 
