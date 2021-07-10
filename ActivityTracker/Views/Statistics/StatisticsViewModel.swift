@@ -10,14 +10,20 @@ import Foundation
 
 final class StatisticsViewModel: ObservableObject {
     private let calendar = Calendar.current
-    let db: Database
+    private let db: Database
+    private var date = Date()
 
     @Published var stats: Statistics
 
 
     init(db: Database) {
         self.db = db
-        self.stats = db.stats(for: Date())
+        self.stats = db.stats(for: date)
+    }
+
+
+    var weekInterval: DateInterval {
+        stats.weekInterval
     }
 
 
@@ -81,5 +87,17 @@ final class StatisticsViewModel: ObservableObject {
 
     var bikeMonthDistances: [Double] {
         stats.bikeDayDistances(for: .month)
+    }
+
+
+    func previousWeek() {
+        date = calendar.date(byAdding: .day, value: -7, to: date)!
+        stats = db.stats(for: date)
+    }
+
+
+    func nextWeek() {
+        date = calendar.date(byAdding: .day, value: 7, to: date)!
+        stats = db.stats(for: date)
     }
 }

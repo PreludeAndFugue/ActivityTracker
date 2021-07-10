@@ -36,6 +36,11 @@ struct Statistics {
     }
 
 
+    var weekInterval: DateInterval {
+        week.dateInterval
+    }
+
+
     func bikeDistance(for interval: Interval) -> Double {
         bikeActivities(for: interval)
             .map({ $0.distance })

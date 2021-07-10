@@ -46,12 +46,18 @@ private extension DistanceProgressView {
 
 
     var percentage: Double {
-        distance / totalDistance
+        let d = distance / totalDistance
+        if d > 1 {
+            return 1
+        } else {
+            return d
+        }
     }
 
 
     var percentageString: String {
-        let n = NSNumber(value: percentage)
+        let d = distance / totalDistance
+        let n = NSNumber(value: d)
         return percentageFormatter.string(from: n) ?? "0 %"
     }
 }

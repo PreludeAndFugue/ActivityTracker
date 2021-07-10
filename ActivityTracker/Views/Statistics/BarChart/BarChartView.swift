@@ -53,7 +53,7 @@ private extension BarChartView.DataPoints {
     var labels: [String] {
         switch self {
         case .month(let values):
-            return values.enumerated().map({ "\($0.offset)" })
+            return values.enumerated().map({ "\($0.offset + 1)" })
         case .week:
             return ["M", "T", "W", "T", "F", "S", "S"]
         }

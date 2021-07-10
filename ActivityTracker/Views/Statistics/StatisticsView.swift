@@ -14,7 +14,7 @@ struct StatisticsView: View {
     var body: some View {
         GeometryReader { proxy in
             VSplitView {
-                WeekNavigatorView()
+                WeekNavigatorView(model: model)
                     .frame(height: 0.1 * proxy.size.height)
                 
                 WeekStatsView(model: model)

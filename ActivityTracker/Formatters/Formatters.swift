@@ -42,3 +42,11 @@ var percentageFormatter: NumberFormatter = {
     nf.maximumFractionDigits = 1
     return nf
 }()
+
+
+var dateIntervalFormatter: DateIntervalFormatter = {
+    var f = DateIntervalFormatter()
+    f.dateStyle = .long
+    f.timeStyle = .none
+    return f
+}()

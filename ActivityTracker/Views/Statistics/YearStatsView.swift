@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct YearStatsView: View {
-    let model: StatisticsViewModel
+    @StateObject var model: StatisticsViewModel
 
     var body: some View {
         VStack(spacing: 10) {

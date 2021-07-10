@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeekStatsView: View {
-    let model: StatisticsViewModel
+    @StateObject var model: StatisticsViewModel
 
     
     var body: some View {
