@@ -17,6 +17,10 @@
 		4E2F185A2690CC2100E218BF /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F18592690CC2100E218BF /* URL.swift */; };
 		4E3EC6C5268A9D5B003EC346 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC6C4268A9D5B003EC346 /* FileManager.swift */; };
 		4E4915E62699EA8900F51095 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915E52699EA8900F51095 /* Formatters.swift */; };
+		4E4915E82699EFD400F51095 /* WeekStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915E72699EFD400F51095 /* WeekStatsView.swift */; };
+		4E4915EA2699F06400F51095 /* MonthStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915E92699F06400F51095 /* MonthStatsView.swift */; };
+		4E4915EC2699F06E00F51095 /* YearStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915EB2699F06E00F51095 /* YearStatsView.swift */; };
+		4E4915EE2699F1F000F51095 /* WeekNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4915ED2699F1F000F51095 /* WeekNavigatorView.swift */; };
 		4E59DEF4268672AA00A712F0 /* ActivityListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */; };
 		4E59DEF72686736300A712F0 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF62686736300A712F0 /* Activity.swift */; };
 		4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59DEF8268673D100A712F0 /* Activity+Debug.swift */; };
@@ -65,6 +69,10 @@
 		4E2F18592690CC2100E218BF /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		4E3EC6C4268A9D5B003EC346 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		4E4915E52699EA8900F51095 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		4E4915E72699EFD400F51095 /* WeekStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsView.swift; sourceTree = "<group>"; };
+		4E4915E92699F06400F51095 /* MonthStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStatsView.swift; sourceTree = "<group>"; };
+		4E4915EB2699F06E00F51095 /* YearStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearStatsView.swift; sourceTree = "<group>"; };
+		4E4915ED2699F1F000F51095 /* WeekNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekNavigatorView.swift; sourceTree = "<group>"; };
 		4E59DEF3268672AA00A712F0 /* ActivityListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListItemView.swift; sourceTree = "<group>"; };
 		4E59DEF62686736300A712F0 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		4E59DEF8268673D100A712F0 /* Activity+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Debug.swift"; sourceTree = "<group>"; };
@@ -305,6 +313,10 @@
 				4EE3085F2698F14F0019BEEA /* BarChart */,
 				4EE308572698CF810019BEEA /* StatisticsView.swift */,
 				4EE308592698CF8D0019BEEA /* StatisticsViewModel.swift */,
+				4E4915ED2699F1F000F51095 /* WeekNavigatorView.swift */,
+				4E4915E72699EFD400F51095 /* WeekStatsView.swift */,
+				4E4915E92699F06400F51095 /* MonthStatsView.swift */,
+				4E4915EB2699F06E00F51095 /* YearStatsView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -435,9 +447,12 @@
 				4EDCC3F526939DAD00AF9A99 /* Array.swift in Sources */,
 				4E6ED2382682A43400C1180D /* MainView.swift in Sources */,
 				4E2F185526909F3E00E218BF /* StravaReader.swift in Sources */,
+				4E4915E82699EFD400F51095 /* WeekStatsView.swift in Sources */,
 				4E59DF00268681E000A712F0 /* Database.swift in Sources */,
 				4E6ED2492682AC4400C1180D /* ActivityListView.swift in Sources */,
 				4E59DEF72686736300A712F0 /* Activity.swift in Sources */,
+				4E4915EA2699F06400F51095 /* MonthStatsView.swift in Sources */,
+				4E4915EC2699F06E00F51095 /* YearStatsView.swift in Sources */,
 				4E6B0ACC2694FC4100552437 /* ActivityAnnotation.swift in Sources */,
 				4EA3B2F32693BEE100B97775 /* ActivityDetailDisclosure.swift in Sources */,
 				4E4915E62699EA8900F51095 /* Formatters.swift in Sources */,
@@ -455,6 +470,7 @@
 				4E6ED24B2682AC6F00C1180D /* ActivityDetailView.swift in Sources */,
 				4EA1D6052688E38E004F7B83 /* GpxReader.swift in Sources */,
 				4E2F185A2690CC2100E218BF /* URL.swift in Sources */,
+				4E4915EE2699F1F000F51095 /* WeekNavigatorView.swift in Sources */,
 				4E59DEF9268673D100A712F0 /* Activity+Debug.swift in Sources */,
 				4E2F184E269087CB00E218BF /* FitReader.swift in Sources */,
 				4EE3085A2698CF8D0019BEEA /* StatisticsViewModel.swift in Sources */,

@@ -25,7 +25,7 @@ struct BarChartView: View {
             Chart(heights: data.values, size: size)
                 .foregroundColor(.purple)
                 .border(Color.gray)
-                .padding([.leading, .trailing], horizontalPadding)
+//                .padding([.leading, .trailing], horizontalPadding)
                 .border(Color.green)
             HStack(spacing: 0) {
                 ForEach(data.labels, id: \.hashValue) { label in
@@ -77,7 +77,7 @@ private struct Chart: Shape {
         }
         let b = path.boundingRect
         let t = CGAffineTransform(
-            scaleX: (size.width - 2 * horizontalPadding) / b.width,
+            scaleX: (size.width) / b.width,
             y: (size.height - textVerticalSpace) / b.height
         )
         return path.applying(t)
@@ -93,6 +93,8 @@ struct BarChartView_Previews: PreviewProvider {
             .frame(width: 300, height: 100)
         BarChartView(data: data, size: CGSize(width: 100, height: 100))
             .frame(width: 100, height: 100)
+        BarChartView(data: data, size: CGSize(width: 500, height: 200))
+            .frame(width: 500, height: 200)
     }
 }
 #endif
