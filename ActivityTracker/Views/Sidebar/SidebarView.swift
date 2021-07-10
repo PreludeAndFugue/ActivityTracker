@@ -71,7 +71,7 @@ struct SidebarView: View {
             coordinator.sidebar()
         })
         .listStyle(SidebarListStyle())
-        .frame(idealWidth: 230)
+        .frame(minWidth: 180, idealWidth: 200)
     }
 }
 
