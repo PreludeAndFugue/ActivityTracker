@@ -19,6 +19,13 @@ struct YearStatsView: View {
                 distance: model.bikeYearDistance,
                 totalDistance: model.bikeTotalYearDistance
             )
+
+            HStack(spacing: 15) {
+                Text(model.bikeYearElapsedTimeString)
+                Divider()
+                    .frame(height: 25)
+                Text(model.bikeYearElevationGainString)
+            }
         }
     }
 }

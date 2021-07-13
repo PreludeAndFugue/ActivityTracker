@@ -18,10 +18,11 @@ struct WeekStatsView: View {
                 totalDistance: model.bikeTotalWeekDistance
             )
 
-            HStack {
-                Text(model.bikeElapsedTimeString)
-
-                Text(model.elevationGainString)
+            HStack(spacing: 15) {
+                Text(model.bikeWeekElapsedTimeString)
+                Divider()
+                    .frame(height: 25)
+                Text(model.bikeWeekElevationGainString)
             }
 
             BarChartView(data: .week(model.bikeWeekDistances), size: CGSize(width: 300, height: 200))

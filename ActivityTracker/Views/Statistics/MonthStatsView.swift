@@ -18,6 +18,13 @@ struct MonthStatsView: View {
             Text(model.bikeMonthDistanceString)
                 .font(.system(size: 25))
 
+            HStack(spacing: 15) {
+                Text(model.bikeMonthElapsedTimeString)
+                Divider()
+                    .frame(height: 25)
+                Text(model.bikeMonthElevationGainString)
+            }
+
             BarChartView(data: .month(model.bikeMonthDistances), size: CGSize(width: 750, height: 200))
         }
     }
