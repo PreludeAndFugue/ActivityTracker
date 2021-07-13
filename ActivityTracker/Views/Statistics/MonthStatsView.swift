@@ -14,6 +14,10 @@ struct MonthStatsView: View {
         VStack {
             Text(month)
                 .font(.system(size: 20))
+
+            Text(model.bikeMonthDistanceString)
+                .font(.system(size: 25))
+
             BarChartView(data: .month(model.bikeMonthDistances), size: CGSize(width: 750, height: 200))
         }
     }
