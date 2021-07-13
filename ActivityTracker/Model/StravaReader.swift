@@ -46,12 +46,6 @@ final class StravaReader: ObservableObject {
             throw ReaderError.couldNotReadData
         }
         try checkColumns(csv: csv)
-
-        let count = csv.enumeratedRows.count
-
-        let activityTypes = Set(csv.enumeratedRows.map({ $0[Columns.activityType.rawValue] }))
-        print(activityTypes)
-
         var activities: [Activity] = []
         for row in csv.enumeratedRows {
             activities.append(try activity(from: row, csvUrl: activitiesUrl))
