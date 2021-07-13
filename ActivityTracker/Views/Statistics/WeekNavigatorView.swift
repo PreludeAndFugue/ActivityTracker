@@ -22,7 +22,6 @@ struct WeekNavigatorView: View {
                 .font(.system(size: 25))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .border(Color.green)
     }
 }
 
