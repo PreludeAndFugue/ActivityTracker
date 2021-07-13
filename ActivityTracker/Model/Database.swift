@@ -16,10 +16,11 @@ final class Database {
 
 
     struct ActivityCount {
-        static let zero = ActivityCount(all: 0, bike: 0, run: 0)
+        static let zero = ActivityCount(all: 0, bike: 0, run: 0, walk: 0)
         let all: Int
         let bike: Int
         let run: Int
+        let walk: Int
     }
 
     private static let fileName = "ActivityTracker.sqlite"
@@ -103,7 +104,8 @@ final class Database {
             ActivityCount(
                 all: try Activity.fetchCount(db),
                 bike: try Activity.all().filter(type: .bike).fetchCount(db),
-                run: try Activity.all().filter(type: .run).fetchCount(db)
+                run: try Activity.all().filter(type: .run).fetchCount(db),
+                walk: try Activity.all().filter(type: .walk).fetchCount(db)
             )
         }
     }

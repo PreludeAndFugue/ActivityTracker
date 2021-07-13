@@ -49,8 +49,12 @@ struct SidebarView: View {
                     }
                     .tag(SidebarView.Selection.run)
 
-                    Text("Walk")
-                        .tag(SidebarView.Selection.walk)
+                    HStack {
+                        Text("Walk")
+                        Spacer()
+                        BadgeView(number: coordinator.activityCount.walk)
+                    }
+                    .tag(SidebarView.Selection.walk)
 
                     Text("This week")
                         .tag(SidebarView.Selection.activitiesWeek)
