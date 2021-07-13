@@ -23,14 +23,14 @@ struct StatisticsView: View {
 
                 MonthStatsView(model: model)
                     .padding([.top, .bottom], 10)
-                    .frame(height: 0.3 * proxy.size.height)
+                    .frame(height: 0.35 * proxy.size.height)
 
                 YearStatsView(model: model)
                     .padding([.top, .bottom], 10)
-                    .frame(height: 0.3 * proxy.size.height)
+                    .frame(height: 0.25 * proxy.size.height)
             }
             .padding([.leading, .trailing], 10)
-            .border(Color.blue)
+            .frame(maxWidth: .infinity)
         }
     }
 }
