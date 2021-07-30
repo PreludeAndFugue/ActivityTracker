@@ -18,4 +18,5 @@ enum ReaderError: Error {
 protocol ReaderAPI {
     func createActivity(with url: URL) throws -> Activity
     func coordinates(for activity: Activity) -> [CLLocationCoordinate2D]
+    func elevation(for activity: Activity) -> [DistanceElevation]
 }
